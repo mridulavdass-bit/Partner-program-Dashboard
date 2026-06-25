@@ -1,0 +1,12 @@
+{
+  "name": "partner-program-dashboard",
+  "version": "1.0.0",
+  "description": "PayGlocal Partner Program Dashboard",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000 --no-clipboard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
