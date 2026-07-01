@@ -1230,6 +1230,14 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 .pcfg-save-bar .pcfg-discard:hover{background:var(--surf);color:var(--tp);}
 .pcfg-save-bar .pcfg-save{height:36px;padding:0 20px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;background:var(--blue);color:#fff;border:none;transition:background .15s;display:flex;align-items:center;gap:6px;}
 .pcfg-save-bar .pcfg-save:hover{background:var(--blue-h);}
+.pcfg-edit-btn{height:36px;padding:0 18px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;background:var(--white);color:var(--tp);border:1px solid var(--border);transition:all .15s;display:flex;align-items:center;gap:6px;}
+.pcfg-edit-btn:hover{background:var(--surf);}
+.pc2-save-bar .pcfg-edit-btn{height:32px;padding:0 16px;font-size:12.5px;border-radius:6px;}
+.pcfg-view-mode input{border-color:transparent!important;background:transparent!important;box-shadow:none!important;cursor:default;}
+.pcfg-view-mode select{border-color:transparent!important;background-color:transparent!important;background-image:none!important;box-shadow:none!important;pointer-events:none;cursor:default;-webkit-appearance:none;appearance:none;}
+.pcfg-view-mode .pcfg-platform-row{background:transparent;}
+.pcfg-view-mode .pc2-platform-banner{background:transparent;border-bottom:none;}
+.pcfg-view-mode .pcfg-prefix,.pcfg-view-mode .pcfg-suffix,.pcfg-view-mode .pfx,.pcfg-view-mode .sfx{color:var(--ts);}
 .pcfg-saved-toast{display:none;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:20px;padding:4px 12px;}
 .pcfg-saved-toast.show{display:inline-flex;}
 .pcfg-section-body-inner{padding:0;}
@@ -1245,6 +1253,30 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 .pc1-chevron.open{transform:rotate(180deg);}
 .pc1-body{border-top:1px solid var(--border);padding:0;display:none;}
 .pc1-body.open{display:block;}
+/* Design 4 — 3-column horizontal card layout */
+.pc4-wrap{padding:28px 40px 40px;}
+.pc4-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start;}
+.pc4-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rlg);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.pc4-card-head{padding:18px 20px 16px;display:flex;align-items:flex-start;gap:14px;}
+.pc4-card-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;margin-top:1px;}
+.pc4-card-meta{flex:1;min-width:0;}
+.pc4-card-title{font-size:13.5px;font-weight:600;color:var(--tp);line-height:1.3;}
+.pc4-card-sub{font-size:11.5px;color:var(--ts);margin-top:3px;font-weight:400;line-height:1.4;}
+.pc4-card-body{flex:1;border-top:1px solid var(--border);}
+.pc4-card .pcfg-section-body-inner{padding:0;}
+.pc4-card .pcfg-col-head{font-size:10.5px;}
+.pc4-card .pcfg-row.pp,.pc4-card .pcfg-platform-row{padding:10px 16px;}
+.pc4-card .pcfg-col-head.pp{padding:8px 16px 6px;}
+.pc4-card .pcfg-field-label{font-size:12.5px;gap:8px;}
+.pc4-card .pcfg-row-icon{width:28px;height:28px;border-radius:6px;font-size:14px;}
+.pc4-card .pcfg-input{font-size:12.5px;height:32px;}
+.pc4-card .pcfg-select{font-size:12.5px;height:32px;padding:0 8px;}
+.pc4-card .pcfg-prefix,.pc4-card .pcfg-suffix{font-size:12px;}
+.pc4-card .pcfg-save-bar{padding:12px 16px;}
+.pc4-card .pcfg-edit-btn{height:32px;padding:0 14px;font-size:12.5px;}
+.pc4-card .pcfg-discard{height:32px;padding:0 14px;font-size:12.5px;}
+.pc4-card .pcfg-save{height:32px;padding:0 14px;font-size:12.5px;}
+.pc4-card .pcfg-platform-row{border-bottom:1px solid var(--border);background:#fafbff;}
 
 /* ── PRICING CONFIG DESIGN 2 ── */
 .pc2-wrap{padding:28px 32px 48px;}
@@ -1358,12 +1390,13 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
     <div class="nav-item" id="nav-activation" onclick="goPage('activation')"><i class="ti ti-user-check"></i><span class="nav-label"> Merchant Activation</span></div>
     <div class="nav-item" onclick="goPage('home')"><i class="ti ti-chart-bar"></i><span class="nav-label"> Transaction Overview</span></div>
     <div class="nav-item" id="nav-commissions" onclick="goPage('commissions')"><i class="ti ti-cash"></i><span class="nav-label"> Commissions</span></div>
-
+    <div class="nav-item" id="nav-pricing" onclick="goPage('pricing')"><i class="ti ti-tag"></i><span class="nav-label"> Pricing</span></div>
     <div class="nav-item" id="nav-gst" onclick="goPage('gst')"><i class="ti ti-file-invoice"></i><span class="nav-label"> GST Invoice</span></div>
     <div class="nav-section">Pricing Configuration</div>
     <div class="nav-sub" id="nav-pricingconfig1" onclick="goPage('pricingconfig1')" style="cursor:pointer;">Design 1</div>
     <div class="nav-sub" id="nav-pricingconfig2" onclick="goPage('pricingconfig2')" style="cursor:pointer;">Design 2</div>
     <div class="nav-sub" id="nav-pricingconfig" onclick="goPage('pricingconfig')" style="cursor:pointer;">Design 3</div>
+    <div class="nav-sub" id="nav-pricingconfig4" onclick="goPage('pricingconfig4')" style="cursor:pointer;">Design 4</div>
     <div class="nav-section">Account Management</div>
     <div class="nav-sub" id="nav-team" onclick="goPage('team')" style="cursor:pointer;">Team Management</div>
     <div class="nav-sub" id="nav-keys" onclick="goPage('keys')" style="cursor:pointer;">Key Management System</div>
@@ -1707,42 +1740,34 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
       </div>
 
       <!-- GLOBAL ACCOUNTS PANE -->
-      <div class="pcfg-pane" id="pcfg-body-ga">
+      <div class="pcfg-pane pcfg-view-mode" id="pcfg-body-ga">
         <div class="pcfg-section-body-inner">
-          <div class="pcfg-col-head ga" style="padding-bottom:8px;margin-bottom:0;">
-            <span>Slabs</span><span></span>
-            <span>Fee Type</span><span>Value</span>
+          <div class="pcfg-col-head pp" style="padding-bottom:8px;">
+            <span>Type</span><span>Fee Type</span><span>Value</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;padding:6px 24px 10px;background:var(--surf);border-bottom:1px solid var(--border);">
-            <span>Min Amount</span><span>Max Amount</span>
-          </div>
-          <div class="pcfg-row ga" id="pcfg-ga-rows">
-            <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="0" data-section="ga" onchange="pcfgMarkDirty('ga')"></div>
-            <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="2000" data-section="ga" onchange="pcfgMarkDirty('ga')"></div>
+          <div class="pcfg-row pp">
+            <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-transfer"></i></span>Transfer Fee</div>
             <select class="pcfg-select" data-section="ga" onchange="pcfgMarkDirty('ga')"><option>Flat</option><option>Percent</option></select>
             <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="10" data-section="ga" onchange="pcfgMarkDirty('ga')"></div>
           </div>
         </div>
         <div class="pcfg-save-bar">
           <span class="pcfg-saved-toast" id="pcfg-toast-ga"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-          <button class="pcfg-discard" onclick="pcfgDiscard('ga')">Discard</button>
-          <button class="pcfg-save" onclick="pcfgSave('ga')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-discard" onclick="pcfgDiscard('ga')" style="display:none;">Discard</button>
+          <button class="pcfg-save" onclick="pcfgSave('ga')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="pcfgStartEdit('ga')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
       <!-- DOMESTIC PAYMENT PROCESSING PANE -->
-      <div class="pcfg-pane" id="pcfg-body-dom" style="display:none;">
+      <div class="pcfg-pane pcfg-view-mode" id="pcfg-body-dom" style="display:none;">
         <div class="pcfg-section-body-inner">
           <div class="pcfg-platform-row">
             <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-receipt-2"></i></span>Platform Fee</div>
             <select class="pcfg-select" data-section="dom" onchange="pcfgMarkDirty('dom')"><option>Percent</option><option>Flat</option></select>
             <div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="1.25" data-section="dom" onchange="pcfgMarkDirty('dom')"><span class="pcfg-suffix">%</span></div>
           </div>
-          <div class="pcfg-add-fee">
-            <label><input type="checkbox" id="pcfg-dom-addl" onchange="pcfgToggleAddl('dom');pcfgMarkDirty('dom');"> <span>Setup additional fee</span></label>
-            <span class="fee-note">(MDR for Rupay debit card &amp; UPI is always 0)*</span>
-          </div>
-          <div id="pcfg-dom-addl-rows" style="margin-top:12px;display:none;">
+          <div id="pcfg-dom-addl-rows" style="margin-top:0;">
             <div class="pcfg-col-head pp" style="padding-bottom:8px;">
               <span>Type</span><span>Fee Type</span><span>Value</span>
             </div>
@@ -1757,13 +1782,14 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
         </div>
         <div class="pcfg-save-bar">
           <span class="pcfg-saved-toast" id="pcfg-toast-dom"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-          <button class="pcfg-discard" onclick="pcfgDiscard('dom')">Discard</button>
-          <button class="pcfg-save" onclick="pcfgSave('dom')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-discard" onclick="pcfgDiscard('dom')" style="display:none;">Discard</button>
+          <button class="pcfg-save" onclick="pcfgSave('dom')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="pcfgStartEdit('dom')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
       <!-- INTERNATIONAL PAYMENT PROCESSING PANE -->
-      <div class="pcfg-pane" id="pcfg-body-intl" style="display:none;">
+      <div class="pcfg-pane pcfg-view-mode" id="pcfg-body-intl" style="display:none;">
         <div class="pcfg-section-body-inner">
           <div class="pcfg-col-head pp" style="padding-bottom:8px;">
             <span>Type</span><span>Fee Type</span><span>Value</span>
@@ -1776,8 +1802,9 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
         </div>
         <div class="pcfg-save-bar">
           <span class="pcfg-saved-toast" id="pcfg-toast-intl"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-          <button class="pcfg-discard" onclick="pcfgDiscard('intl')">Discard</button>
-          <button class="pcfg-save" onclick="pcfgSave('intl')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-discard" onclick="pcfgDiscard('intl')" style="display:none;">Discard</button>
+          <button class="pcfg-save" onclick="pcfgSave('intl')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="pcfgStartEdit('intl')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
@@ -1793,7 +1820,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
       </div>
 
       <!-- GA CARD -->
-      <div class="pc2-card" id="p2-body-ga" style="border-top-color:#1d4ed8;">
+      <div class="pc2-card pcfg-view-mode" id="p2-body-ga" style="border-top-color:#1d4ed8;">
         <div class="pc2-card-head">
           <div class="pc2-card-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-building-bank"></i></div>
           <div>
@@ -1801,22 +1828,17 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
             <div class="pc2-card-sub">SWIFT transfers and cross-currency balances</div>
           </div>
         </div>
-        <div class="pc2-ga-head"><span>Min Amount</span><span>Max Amount</span><span>Fee Type</span><span>Value</span></div>
-        <div class="pc2-ga-row">
-          <div class="pc2-val"><span class="pfx">$</span><input class="hpx" type="number" value="0" data-section="p2ga" onchange="p2MarkDirty('ga')"></div>
-          <div class="pc2-val"><span class="pfx">$</span><input class="hpx" type="number" value="2000" data-section="p2ga" onchange="p2MarkDirty('ga')"></div>
-          <select class="pc2-sel" data-section="p2ga" onchange="p2MarkDirty('ga')"><option>Flat</option><option>Percent</option></select>
-          <div class="pc2-val"><span class="pfx">$</span><input class="hpx" type="number" value="10" data-section="p2ga" onchange="p2MarkDirty('ga')"></div>
-        </div>
+        <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon" style="color:#1d4ed8;"><i class="ti ti-transfer"></i></div>Transfer Fee</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2ga" onchange="p2MarkDirty('ga')"><option>Flat</option><option>Percent</option></select><div class="pc2-val"><span class="pfx">$</span><input class="hp" type="number" value="10" data-section="p2ga" onchange="p2MarkDirty('ga')"></div></div></div>
         <div class="pc2-save-bar">
           <span class="pc2-toast" id="p2-toast-ga"><i class="ti ti-circle-check" style="font-size:13px;"></i> Changes saved</span>
-          <button class="pc2-btn-discard" onclick="p2Discard('ga')">Discard</button>
-          <button class="pc2-btn-save" onclick="p2Save('ga')"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <button class="pc2-btn-discard" onclick="p2Discard('ga')" style="display:none;">Discard</button>
+          <button class="pc2-btn-save" onclick="p2Save('ga')" style="display:none;"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="p2StartEdit('ga')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
       <!-- DOM CARD -->
-      <div class="pc2-card" id="p2-body-dom" style="border-top-color:#166534;">
+      <div class="pc2-card pcfg-view-mode" id="p2-body-dom" style="border-top-color:#166534;">
         <div class="pc2-card-head">
           <div class="pc2-card-icon" style="background:#f0fdf4;color:#166534;"><i class="ti ti-currency-rupee"></i></div>
           <div>
@@ -1831,11 +1853,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
             <div class="pc2-val"><input class="hp" type="number" step="0.01" value="1.25" data-section="p2dom" onchange="p2MarkDirty('dom')"><span class="sfx">%</span></div>
           </div>
         </div>
-        <div class="pc2-addl-toggle">
-          <label><input type="checkbox" id="p2-dom-addl" onchange="p2ToggleAddl('dom');p2MarkDirty('dom');"> <span>Setup additional fee</span></label>
-          <span class="fee-note">(MDR for Rupay debit card &amp; UPI is always 0)*</span>
-        </div>
-        <div id="p2-dom-addl-rows" style="display:none;">
+        <div id="p2-dom-addl-rows">
           <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></div>Other debit cards under 2k</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2dom" onchange="p2MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pc2-val"><input class="hp" type="number" step="0.01" value="0" data-section="p2dom" onchange="p2MarkDirty('dom')"><span class="sfx">%</span></div></div></div>
           <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></div>Other debit cards over 2k</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2dom" onchange="p2MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pc2-val"><input class="hp" type="number" step="0.01" value="0" data-section="p2dom" onchange="p2MarkDirty('dom')"><span class="sfx">%</span></div></div></div>
           <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></div>Other credit cards</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2dom" onchange="p2MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pc2-val"><input class="hp" type="number" step="0.01" value="0" data-section="p2dom" onchange="p2MarkDirty('dom')"><span class="sfx">%</span></div></div></div>
@@ -1846,13 +1864,14 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
         </div>
         <div class="pc2-save-bar">
           <span class="pc2-toast" id="p2-toast-dom"><i class="ti ti-circle-check" style="font-size:13px;"></i> Changes saved</span>
-          <button class="pc2-btn-discard" onclick="p2Discard('dom')">Discard</button>
-          <button class="pc2-btn-save" onclick="p2Save('dom')"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <button class="pc2-btn-discard" onclick="p2Discard('dom')" style="display:none;">Discard</button>
+          <button class="pc2-btn-save" onclick="p2Save('dom')" style="display:none;"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="p2StartEdit('dom')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
       <!-- INTL CARD -->
-      <div class="pc2-card" id="p2-body-intl" style="border-top-color:#6d28d9;">
+      <div class="pc2-card pcfg-view-mode" id="p2-body-intl" style="border-top-color:#6d28d9;">
         <div class="pc2-card-head">
           <div class="pc2-card-icon" style="background:#f5f3ff;color:#6d28d9;"><i class="ti ti-world"></i></div>
           <div>
@@ -1866,9 +1885,10 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
         <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></div>Other credit cards</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2intl" onchange="p2MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pc2-val"><input class="hp" type="number" step="0.01" value="2.75" data-section="p2intl" onchange="p2MarkDirty('intl')"><span class="sfx">%</span></div></div></div>
         <div class="pc2-row"><div class="pc2-row-label"><div class="pc2-row-icon"><img src="assets/Discover_Card_logo.svg.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></div>Discover</div><div class="pc2-controls"><select class="pc2-sel" data-section="p2intl" onchange="p2MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pc2-val"><input class="hp" type="number" step="0.01" value="2.75" data-section="p2intl" onchange="p2MarkDirty('intl')"><span class="sfx">%</span></div></div></div>
         <div class="pc2-save-bar">
-          <span class="pc2-toast" id="p2-toast-intl"><i class="ti ti-circle-check" style="font-size:13px;"></i> Changes saved</span>
-          <button class="pc2-btn-discard" onclick="p2Discard('intl')">Discard</button>
-          <button class="pc2-btn-save" onclick="p2Save('intl')"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <span class="pc2-toast" id="p2-toast-intl"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
+          <button class="pc2-btn-discard" onclick="p2Discard('intl')" style="display:none;">Discard</button>
+          <button class="pc2-btn-save" onclick="p2Save('intl')" style="display:none;"><i class="ti ti-check" style="font-size:12px;"></i> Save changes</button>
+          <button class="pcfg-edit-btn" onclick="p2StartEdit('intl')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
         </div>
       </div>
 
@@ -1893,21 +1913,20 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
           </div>
           <i class="ti ti-chevron-down pc1-chevron open" id="p1-chev-ga"></i>
         </div>
-        <div class="pc1-body open" id="p1-body-ga">
+        <div class="pc1-body open pcfg-view-mode" id="p1-body-ga">
           <div class="pcfg-section-body-inner">
-            <div class="pcfg-col-head ga" style="padding-bottom:8px;margin-bottom:0;"><span>Slabs</span><span></span><span>Fee Type</span><span>Value</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;font-size:11px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.07em;padding:6px 24px 10px;background:var(--surf);border-bottom:1px solid var(--border);"><span>Min Amount</span><span>Max Amount</span></div>
-            <div class="pcfg-row ga">
-              <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="0" data-section="p1ga" onchange="p1MarkDirty('ga')"></div>
-              <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="2000" data-section="p1ga" onchange="p1MarkDirty('ga')"></div>
+            <div class="pcfg-col-head pp" style="padding-bottom:8px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
+            <div class="pcfg-row pp">
+              <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-transfer"></i></span>Transfer Fee</div>
               <select class="pcfg-select" data-section="p1ga" onchange="p1MarkDirty('ga')"><option>Flat</option><option>Percent</option></select>
               <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="10" data-section="p1ga" onchange="p1MarkDirty('ga')"></div>
             </div>
           </div>
           <div class="pcfg-save-bar">
             <span class="pcfg-saved-toast" id="p1-toast-ga"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-            <button class="pcfg-discard" onclick="p1Discard('ga')">Discard</button>
-            <button class="pcfg-save" onclick="p1Save('ga')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-discard" onclick="p1Discard('ga')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p1Save('ga')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p1StartEdit('ga')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
           </div>
         </div>
       </div>
@@ -1922,18 +1941,14 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
           </div>
           <i class="ti ti-chevron-down pc1-chevron open" id="p1-chev-dom"></i>
         </div>
-        <div class="pc1-body open" id="p1-body-dom">
+        <div class="pc1-body open pcfg-view-mode" id="p1-body-dom">
           <div class="pcfg-section-body-inner">
             <div class="pcfg-platform-row">
               <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-receipt-2"></i></span>Platform Fee</div>
               <select class="pcfg-select" data-section="p1dom" onchange="p1MarkDirty('dom')"><option>Percent</option><option>Flat</option></select>
               <div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="1.25" data-section="p1dom" onchange="p1MarkDirty('dom')"><span class="pcfg-suffix">%</span></div>
             </div>
-            <div class="pcfg-add-fee">
-              <label><input type="checkbox" id="p1-dom-addl" onchange="p1ToggleAddl('dom');p1MarkDirty('dom');"> <span>Setup additional fee</span></label>
-              <span class="fee-note">(MDR for Rupay debit card &amp; UPI is always 0)*</span>
-            </div>
-            <div id="p1-dom-addl-rows" style="display:none;">
+            <div id="p1-dom-addl-rows">
               <div class="pcfg-col-head pp" style="padding-bottom:8px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
               <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:18px;height:18px;object-fit:contain;"></span>Other debit cards under 2k</div><select class="pcfg-select" data-section="p1dom" onchange="p1MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p1dom" onchange="p1MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
               <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:18px;height:18px;object-fit:contain;"></span>Other debit cards over 2k</div><select class="pcfg-select" data-section="p1dom" onchange="p1MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p1dom" onchange="p1MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
@@ -1946,8 +1961,9 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
           </div>
           <div class="pcfg-save-bar">
             <span class="pcfg-saved-toast" id="p1-toast-dom"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-            <button class="pcfg-discard" onclick="p1Discard('dom')">Discard</button>
-            <button class="pcfg-save" onclick="p1Save('dom')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-discard" onclick="p1Discard('dom')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p1Save('dom')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p1StartEdit('dom')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
           </div>
         </div>
       </div>
@@ -1962,7 +1978,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
           </div>
           <i class="ti ti-chevron-down pc1-chevron open" id="p1-chev-intl"></i>
         </div>
-        <div class="pc1-body open" id="p1-body-intl">
+        <div class="pc1-body open pcfg-view-mode" id="p1-body-intl">
           <div class="pcfg-section-body-inner">
             <div class="pcfg-col-head pp" style="padding-bottom:8px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
             <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/amex.png" style="width:18px;height:18px;object-fit:contain;border-radius:2px;"></span>American express</div><select class="pcfg-select" data-section="p1intl" onchange="p1MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.99" data-section="p1intl" onchange="p1MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
@@ -1973,12 +1989,116 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
           </div>
           <div class="pcfg-save-bar">
             <span class="pcfg-saved-toast" id="p1-toast-intl"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
-            <button class="pcfg-discard" onclick="p1Discard('intl')">Discard</button>
-            <button class="pcfg-save" onclick="p1Save('intl')"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-discard" onclick="p1Discard('intl')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p1Save('intl')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p1StartEdit('intl')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
           </div>
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ════ PRICING CONFIG DESIGN 4 PAGE ════ -->
+  <div class="page" id="page-pricingconfig4">
+    <div class="pc4-wrap">
+      <div style="margin-bottom:20px;">
+        <h1 style="font-size:22px;font-weight:700;color:var(--tp);letter-spacing:-.3px;margin-bottom:6px;">Pricing Configuration</h1>
+        <p style="font-size:13.5px;color:var(--ts);">Configure the fee structure applied to your merchants across products. Changes take effect immediately after saving.</p>
+      </div>
+      <div class="pc4-grid">
+
+        <!-- DOM CARD (tallest — first) -->
+        <div class="pc4-card pcfg-view-mode" id="p4-body-dom">
+          <div class="pc4-card-head" style="border-bottom:1px solid var(--border);">
+            <div class="pc4-card-icon" style="background:#f0fdf4;color:#166534;"><i class="ti ti-currency-rupee"></i></div>
+            <div class="pc4-card-meta">
+              <div class="pc4-card-title">Domestic Payment Processing</div>
+              <div class="pc4-card-sub">INR payments via cards, UPI, and net banking</div>
+            </div>
+          </div>
+          <div class="pc4-card-body">
+            <div class="pcfg-section-body-inner">
+              <div class="pcfg-platform-row">
+                <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-receipt-2"></i></span>Platform Fee</div>
+                <select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select>
+                <div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="1.25" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div>
+              </div>
+              <div id="p4-dom-addl-rows">
+                <div class="pcfg-col-head pp" style="padding-bottom:6px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></span>Other debit cards under 2k</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></span>Other debit cards over 2k</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></span>Other credit cards</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/amex.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>American express</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/diners-club.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>Diners</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/Discover_Card_logo.svg.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>Discover</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+                <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/bank.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>Indian net banking</div><select class="pcfg-select" data-section="p4dom" onchange="p4MarkDirty('dom')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="0" data-section="p4dom" onchange="p4MarkDirty('dom')"><span class="pcfg-suffix">%</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="pcfg-save-bar">
+            <span class="pcfg-saved-toast" id="p4-toast-dom"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
+            <button class="pcfg-discard" onclick="p4Discard('dom')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p4Save('dom')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p4StartEdit('dom')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
+          </div>
+        </div>
+
+        <!-- INTL CARD (medium — second) -->
+        <div class="pc4-card pcfg-view-mode" id="p4-body-intl">
+          <div class="pc4-card-head" style="border-bottom:1px solid var(--border);">
+            <div class="pc4-card-icon" style="background:#f5f3ff;color:#6d28d9;"><i class="ti ti-world"></i></div>
+            <div class="pc4-card-meta">
+              <div class="pc4-card-title">International Payment Processing</div>
+              <div class="pc4-card-sub">Cross-border card transactions</div>
+            </div>
+          </div>
+          <div class="pc4-card-body">
+            <div class="pcfg-section-body-inner">
+              <div class="pcfg-col-head pp" style="padding-bottom:6px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
+              <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/amex.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>American express</div><select class="pcfg-select" data-section="p4intl" onchange="p4MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.99" data-section="p4intl" onchange="p4MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
+              <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/diners-club.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>Diners</div><select class="pcfg-select" data-section="p4intl" onchange="p4MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.99" data-section="p4intl" onchange="p4MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
+              <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></span>Other debit cards</div><select class="pcfg-select" data-section="p4intl" onchange="p4MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.75" data-section="p4intl" onchange="p4MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
+              <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/credit-card.png" style="width:16px;height:16px;object-fit:contain;"></span>Other credit cards</div><select class="pcfg-select" data-section="p4intl" onchange="p4MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.75" data-section="p4intl" onchange="p4MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
+              <div class="pcfg-row pp"><div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;"><img src="assets/Discover_Card_logo.svg.png" style="width:16px;height:16px;object-fit:contain;border-radius:2px;"></span>Discover</div><select class="pcfg-select" data-section="p4intl" onchange="p4MarkDirty('intl')"><option>Percent</option><option>Flat</option></select><div class="pcfg-input-wrap"><input class="pcfg-input has-suffix" type="number" step="0.01" value="2.75" data-section="p4intl" onchange="p4MarkDirty('intl')"><span class="pcfg-suffix">%</span></div></div>
+            </div>
+          </div>
+          <div class="pcfg-save-bar">
+            <span class="pcfg-saved-toast" id="p4-toast-intl"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
+            <button class="pcfg-discard" onclick="p4Discard('intl')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p4Save('intl')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p4StartEdit('intl')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
+          </div>
+        </div>
+
+        <!-- GA CARD (shortest — third) -->
+        <div class="pc4-card pcfg-view-mode" id="p4-body-ga">
+          <div class="pc4-card-head" style="border-bottom:1px solid var(--border);">
+            <div class="pc4-card-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-building-bank"></i></div>
+            <div class="pc4-card-meta">
+              <div class="pc4-card-title">Global Accounts</div>
+              <div class="pc4-card-sub">SWIFT transfers and cross-currency balances</div>
+            </div>
+          </div>
+          <div class="pc4-card-body">
+            <div class="pcfg-section-body-inner">
+              <div class="pcfg-col-head pp" style="padding-bottom:6px;"><span>Type</span><span>Fee Type</span><span>Value</span></div>
+              <div class="pcfg-row pp">
+                <div class="pcfg-field-label"><span class="pcfg-row-icon" style="background:#F1F5F9;color:#1d4ed8;"><i class="ti ti-transfer"></i></span>Transfer Fee</div>
+                <select class="pcfg-select" data-section="p4ga" onchange="p4MarkDirty('ga')"><option>Flat</option><option>Percent</option></select>
+                <div class="pcfg-input-wrap"><span class="pcfg-prefix">$</span><input class="pcfg-input has-prefix" type="number" value="10" data-section="p4ga" onchange="p4MarkDirty('ga')"></div>
+              </div>
+            </div>
+          </div>
+          <div class="pcfg-save-bar">
+            <span class="pcfg-saved-toast" id="p4-toast-ga"><i class="ti ti-circle-check" style="font-size:14px;"></i> Changes saved</span>
+            <button class="pcfg-discard" onclick="p4Discard('ga')" style="display:none;">Discard</button>
+            <button class="pcfg-save" onclick="p4Save('ga')" style="display:none;"><i class="ti ti-check" style="font-size:13px;"></i> Save changes</button>
+            <button class="pcfg-edit-btn" onclick="p4StartEdit('ga')"><i class="ti ti-edit" style="font-size:13px;"></i> Edit</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -3716,7 +3836,16 @@ function switchSettTab(tab){
 /* ═══════════════════════════════════════════════
    NAV
 ═══════════════════════════════════════════════ */
+let sidebarAutoCollapsed = false;
 function goPage(p) {
+  /* restore sidebar when leaving Design 4 */
+  if (p !== 'pricingconfig4' && sidebarAutoCollapsed) {
+    const sb = document.querySelector('.sidebar');
+    if (sb) sb.classList.remove('collapsed');
+    const icon = document.getElementById('s-toggle-icon');
+    if (icon) icon.className = 'ti ti-layout-sidebar-left-collapse';
+    sidebarAutoCollapsed = false;
+  }
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.nav-item,.nav-sub').forEach(el=>el.classList.remove('active'));
   if(p==='activation'){
@@ -3764,6 +3893,18 @@ function goPage(p) {
     document.getElementById('page-pricingconfig2').classList.add('active');
     const pc2n=document.getElementById('nav-pricingconfig2');
     if(pc2n)pc2n.classList.add('active');
+  } else if(p==='pricingconfig4'){
+    document.getElementById('page-pricingconfig4').classList.add('active');
+    const pc4n=document.getElementById('nav-pricingconfig4');
+    if(pc4n)pc4n.classList.add('active');
+    /* auto-collapse sidebar for the wide 3-card layout */
+    const sb4 = document.querySelector('.sidebar');
+    if (sb4 && !sb4.classList.contains('collapsed')) {
+      sb4.classList.add('collapsed');
+      const icon4 = document.getElementById('s-toggle-icon');
+      if (icon4) icon4.className = 'ti ti-layout-sidebar-left-expand';
+      sidebarAutoCollapsed = true;
+    }
   } else {
     // home / fallback → activation page
     document.getElementById('page-activation').classList.add('active');
@@ -5569,13 +5710,34 @@ function pcfgMarkDirty(section) {
   if (toast) toast.classList.remove('show');
 }
 
+/* shared view/edit mode helpers */
+function pricingViewMode(el) {
+  if (!el) return;
+  el.classList.add('pcfg-view-mode');
+  const editBtn = el.querySelector('.pcfg-edit-btn');
+  if (editBtn) editBtn.style.display = '';
+  ['.pcfg-discard','.pcfg-save','.pc2-btn-discard','.pc2-btn-save'].forEach(sel => {
+    const b = el.querySelector(sel); if (b) b.style.display = 'none';
+  });
+}
+function pricingEditMode(el) {
+  if (!el) return;
+  el.classList.remove('pcfg-view-mode');
+  const editBtn = el.querySelector('.pcfg-edit-btn');
+  if (editBtn) editBtn.style.display = 'none';
+  ['.pcfg-discard','.pcfg-save','.pc2-btn-discard','.pc2-btn-save'].forEach(sel => {
+    const b = el.querySelector(sel); if (b) b.style.display = '';
+  });
+}
+function pcfgStartEdit(s) { pricingEditMode(document.getElementById('pcfg-body-' + s)); }
+function p1StartEdit(s) { pricingEditMode(document.getElementById('p1-body-' + s)); }
+function p2StartEdit(s) { pricingEditMode(document.getElementById('p2-body-' + s)); }
+
 function pcfgSave(section) {
   pcfgSnapshot(section);
+  pricingViewMode(document.getElementById('pcfg-body-' + section));
   const toast = document.getElementById('pcfg-toast-' + section);
-  if (toast) {
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-  }
+  if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
 }
 
 function pcfgDiscard(section) {
@@ -5583,18 +5745,10 @@ function pcfgDiscard(section) {
   if (!snap) return;
   const body = document.getElementById('pcfg-body-' + section);
   const inputs = body.querySelectorAll('input,select');
-  inputs.forEach((el, i) => {
-    if (el.type === 'checkbox') { el.checked = snap[i]; el.dispatchEvent(new Event('change')); }
-    else el.value = snap[i];
-  });
+  inputs.forEach((el, i) => { if (snap[i] !== undefined) el.value = snap[i]; });
+  pricingViewMode(body);
   const toast = document.getElementById('pcfg-toast-' + section);
   if (toast) toast.classList.remove('show');
-}
-
-function pcfgToggleAddl(section) {
-  const cb = document.getElementById('pcfg-' + section + '-addl');
-  const rows = document.getElementById('pcfg-' + section + '-addl-rows');
-  if (rows) rows.style.display = cb.checked ? 'block' : 'none';
 }
 
 ['ga','dom','intl'].forEach(s => pcfgSnapshot(s));
@@ -5605,7 +5759,7 @@ function p2Snapshot(section) {
   if (!body) return;
   const inputs = body.querySelectorAll('input,select');
   const snap = [];
-  inputs.forEach(el => snap.push(el.type === 'checkbox' ? el.checked : el.value));
+  inputs.forEach(el => snap.push(el.value));
   p2Originals[section] = snap;
 }
 function p2MarkDirty(section) {
@@ -5614,6 +5768,7 @@ function p2MarkDirty(section) {
 }
 function p2Save(section) {
   p2Snapshot(section);
+  pricingViewMode(document.getElementById('p2-body-' + section));
   const toast = document.getElementById('p2-toast-' + section);
   if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
 }
@@ -5622,17 +5777,10 @@ function p2Discard(section) {
   if (!snap) return;
   const body = document.getElementById('p2-body-' + section);
   const inputs = body.querySelectorAll('input,select');
-  inputs.forEach((el, i) => {
-    if (el.type === 'checkbox') { el.checked = snap[i]; el.dispatchEvent(new Event('change')); }
-    else el.value = snap[i];
-  });
+  inputs.forEach((el, i) => { if (snap[i] !== undefined) el.value = snap[i]; });
+  pricingViewMode(body);
   const toast = document.getElementById('p2-toast-' + section);
   if (toast) toast.classList.remove('show');
-}
-function p2ToggleAddl(section) {
-  const cb = document.getElementById('p2-' + section + '-addl');
-  const rows = document.getElementById('p2-' + section + '-addl-rows');
-  if (rows) rows.style.display = cb.checked ? 'block' : 'none';
 }
 ['ga','dom','intl'].forEach(s => p2Snapshot(s));
 
@@ -5642,7 +5790,7 @@ function p1Snapshot(section) {
   if (!body) return;
   const inputs = body.querySelectorAll('input,select');
   const snap = [];
-  inputs.forEach(el => snap.push(el.type === 'checkbox' ? el.checked : el.value));
+  inputs.forEach(el => snap.push(el.value));
   p1Originals[section] = snap;
 }
 function p1Toggle(section) {
@@ -5657,6 +5805,7 @@ function p1MarkDirty(section) {
 }
 function p1Save(section) {
   p1Snapshot(section);
+  pricingViewMode(document.getElementById('p1-body-' + section));
   const toast = document.getElementById('p1-toast-' + section);
   if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
 }
@@ -5665,19 +5814,50 @@ function p1Discard(section) {
   if (!snap) return;
   const body = document.getElementById('p1-body-' + section);
   const inputs = body.querySelectorAll('input,select');
-  inputs.forEach((el, i) => {
-    if (el.type === 'checkbox') { el.checked = snap[i]; el.dispatchEvent(new Event('change')); }
-    else el.value = snap[i];
-  });
+  inputs.forEach((el, i) => { if (snap[i] !== undefined) el.value = snap[i]; });
+  pricingViewMode(body);
   const toast = document.getElementById('p1-toast-' + section);
   if (toast) toast.classList.remove('show');
 }
-function p1ToggleAddl(section) {
-  const cb = document.getElementById('p1-' + section + '-addl');
-  const rows = document.getElementById('p1-' + section + '-addl-rows');
-  if (rows) rows.style.display = cb.checked ? 'block' : 'none';
-}
 ['ga','dom','intl'].forEach(s => p1Snapshot(s));
+
+const p4Originals = {};
+function p4Snapshot(section) {
+  const body = document.getElementById('p4-body-' + section);
+  if (!body) return;
+  const inputs = body.querySelectorAll('input,select');
+  const snap = [];
+  inputs.forEach(el => snap.push(el.value));
+  p4Originals[section] = snap;
+}
+function p4Toggle(section) {
+  const body = document.getElementById('p4-body-' + section);
+  const chev = document.getElementById('p4-chev-' + section);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+function p4MarkDirty(section) {
+  const toast = document.getElementById('p4-toast-' + section);
+  if (toast) toast.classList.remove('show');
+}
+function p4Save(section) {
+  p4Snapshot(section);
+  pricingViewMode(document.getElementById('p4-body-' + section));
+  const toast = document.getElementById('p4-toast-' + section);
+  if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
+}
+function p4Discard(section) {
+  const snap = p4Originals[section];
+  if (!snap) return;
+  const body = document.getElementById('p4-body-' + section);
+  const inputs = body.querySelectorAll('input,select');
+  inputs.forEach((el, i) => { if (snap[i] !== undefined) el.value = snap[i]; });
+  pricingViewMode(body);
+  const toast = document.getElementById('p4-toast-' + section);
+  if (toast) toast.classList.remove('show');
+}
+function p4StartEdit(s) { pricingEditMode(document.getElementById('p4-body-' + s)); }
+['ga','dom','intl'].forEach(s => p4Snapshot(s));
 
 /* ── INIT ── */
 goPage('activation');
