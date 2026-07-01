@@ -3130,75 +3130,78 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 
   <!-- ════ COMMISSIONS PAGE ════ -->
   <div class="page" id="page-commissions">
-    <div style="padding:28px 32px 40px;">
-      <div style="margin-bottom:28px;">
+    <div style="padding:28px 40px 40px;">
+      <div style="margin-bottom:24px;">
         <h1 style="font-size:22px;font-weight:700;color:var(--tp);letter-spacing:-.3px;margin-bottom:6px;">Commission Pricing</h1>
         <p style="font-size:13.5px;color:var(--ts);">Your commission rates from PayGlocal and the base pricing offered to your merchants.</p>
       </div>
 
-      <!-- Partner commission rates from PayGlocal -->
-      <div class="pc-section">
-        <div class="pc-section-head">
-          <div class="pc-section-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-receipt-2"></i></div>
-          <div>
-            <div class="pc-section-title">Your commission rates from PayGlocal</div>
-            <div class="pc-section-sub">Rates you earn on every merchant transaction processed through your referrals</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+
+        <!-- Card 1: Partner commission rates (no Remarks) -->
+        <div class="pc-section" style="margin-bottom:0;">
+          <div class="pc-section-head">
+            <div class="pc-section-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="ti ti-receipt-2"></i></div>
+            <div>
+              <div class="pc-section-title">Your commission rates from PayGlocal</div>
+              <div class="pc-section-sub">Rates you earn on every merchant transaction processed through your referrals</div>
+            </div>
+          </div>
+          <div class="pc-table-wrap">
+            <table class="pc-tbl">
+              <thead><tr><th>Product</th><th>Commission type</th><th>Rate</th></tr></thead>
+              <tbody>
+                <tr><td>Global Accounts (FX)</td><td>Revenue share</td><td>15% of FX spread</td></tr>
+                <tr><td>International Cards</td><td>Revenue share</td><td>0.30% of MDR</td></tr>
+                <tr><td>Domestic Cards</td><td>Revenue share</td><td>0.20% of MDR</td></tr>
+                <tr><td>UPI</td><td>Flat fee</td><td>—</td></tr>
+                <tr><td>Netbanking</td><td>Revenue share</td><td>0.25% of MDR</td></tr>
+                <tr><td>Onboarding bonus</td><td>One-time</td><td>—</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="pc-table-wrap">
-          <table class="pc-tbl">
-            <thead><tr><th>Product</th><th>Commission type</th><th>Rate</th><th>Flat per txn</th><th>Remarks</th></tr></thead>
-            <tbody>
-              <tr><td>Global Accounts (FX)</td><td>Revenue share</td><td>15% of FX spread</td><td>—</td><td>Credited monthly</td></tr>
-              <tr><td>International Cards</td><td>Revenue share</td><td>0.30% of MDR</td><td>₹1.00</td><td>Per settled transaction</td></tr>
-              <tr><td>Domestic Cards</td><td>Revenue share</td><td>0.20% of MDR</td><td>₹0.50</td><td>Per settled transaction</td></tr>
-              <tr><td>UPI</td><td>Flat fee</td><td>—</td><td>₹0.25</td><td>Per successful transaction</td></tr>
-              <tr><td>Netbanking</td><td>Revenue share</td><td>0.25% of MDR</td><td>₹0.75</td><td>Per settled transaction</td></tr>
-              <tr><td>Onboarding bonus</td><td>One-time</td><td>—</td><td>₹2,000</td><td>Per activated merchant</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      <!-- Merchant base pricing -->
-      <div class="pc-section">
-        <div class="pc-section-head">
-          <div class="pc-section-icon" style="background:#f0fdf4;color:#166534;"><i class="ti ti-building-store"></i></div>
-          <div>
-            <div class="pc-section-title">Merchant base pricing</div>
-            <div class="pc-section-sub">The rates your merchants are charged — your commission is the spread between these and your rates above</div>
+        <!-- Card 2: Merchant base pricing -->
+        <div class="pc-section" style="margin-bottom:0;">
+          <div class="pc-section-head">
+            <div class="pc-section-icon" style="background:#f0fdf4;color:#166534;"><i class="ti ti-building-store"></i></div>
+            <div>
+              <div class="pc-section-title">Merchant base pricing</div>
+              <div class="pc-section-sub">The rates your merchants are charged — your commission is the spread between these and your rates above</div>
+            </div>
           </div>
+          <div class="pc-table-wrap">
+            <table class="pc-tbl">
+              <thead><tr><th>Product</th><th>Merchant MDR / rate</th><th>Flat per txn</th><th>Your rate</th><th>Your spread</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Global Accounts (FX)</td><td>0.55% FX spread</td><td>—</td><td>0.47% FX spread</td>
+                  <td><span style="color:#166534;font-weight:600;">0.08% (15% share)</span></td>
+                </tr>
+                <tr>
+                  <td>International Cards</td><td>2.50% MDR + ₹10</td><td>₹10.00</td><td>2.20% + ₹9.00</td>
+                  <td><span style="color:#166534;font-weight:600;">0.30% + ₹1.00</span></td>
+                </tr>
+                <tr>
+                  <td>Domestic Cards</td><td>1.50% MDR + ₹2</td><td>₹2.00</td><td>1.30% + ₹1.50</td>
+                  <td><span style="color:#166534;font-weight:600;">0.20% + ₹0.50</span></td>
+                </tr>
+                <tr>
+                  <td>UPI</td><td>₹0</td><td>₹0</td><td>—</td>
+                  <td><span style="color:#166534;font-weight:600;">₹0.25 flat</span></td>
+                </tr>
+                <tr>
+                  <td>Netbanking</td><td>1.50% + ₹5</td><td>₹5.00</td><td>1.25% + ₹4.25</td>
+                  <td><span style="color:#166534;font-weight:600;">0.25% + ₹0.75</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pc-note"><i class="ti ti-info-circle" style="font-size:14px;flex-shrink:0;"></i> Commission is calculated on net settled transaction value after refunds and chargebacks. Credited to your account on a monthly basis.</div>
         </div>
-        <div class="pc-table-wrap">
-          <table class="pc-tbl">
-            <thead><tr><th>Product</th><th>Merchant MDR / rate</th><th>Flat per txn</th><th>Your rate</th><th>Your spread</th></tr></thead>
-            <tbody>
-              <tr>
-                <td>Global Accounts (FX)</td><td>0.55% FX spread</td><td>—</td><td>0.47% FX spread</td>
-                <td><span style="color:#166534;font-weight:600;">0.08% (15% share)</span></td>
-              </tr>
-              <tr>
-                <td>International Cards</td><td>2.50% MDR + ₹10</td><td>₹10.00</td><td>2.20% + ₹9.00</td>
-                <td><span style="color:#166534;font-weight:600;">0.30% + ₹1.00</span></td>
-              </tr>
-              <tr>
-                <td>Domestic Cards</td><td>1.50% MDR + ₹2</td><td>₹2.00</td><td>1.30% + ₹1.50</td>
-                <td><span style="color:#166534;font-weight:600;">0.20% + ₹0.50</span></td>
-              </tr>
-              <tr>
-                <td>UPI</td><td>₹0</td><td>₹0</td><td>—</td>
-                <td><span style="color:#166534;font-weight:600;">₹0.25 flat</span></td>
-              </tr>
-              <tr>
-                <td>Netbanking</td><td>1.50% + ₹5</td><td>₹5.00</td><td>1.25% + ₹4.25</td>
-                <td><span style="color:#166534;font-weight:600;">0.25% + ₹0.75</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="pc-note"><i class="ti ti-info-circle" style="font-size:14px;flex-shrink:0;"></i> Commission is calculated on net settled transaction value after refunds and chargebacks. Credited to your account on a monthly basis.</div>
-      </div>
 
+      </div>
     </div>
   </div>
 
@@ -3838,8 +3841,8 @@ function switchSettTab(tab){
 ═══════════════════════════════════════════════ */
 let sidebarAutoCollapsed = false;
 function goPage(p) {
-  /* restore sidebar when leaving Design 4 */
-  if (p !== 'pricingconfig4' && sidebarAutoCollapsed) {
+  /* restore sidebar when leaving pages that auto-collapse it */
+  if (!['pricingconfig4','commissions'].includes(p) && sidebarAutoCollapsed) {
     const sb = document.querySelector('.sidebar');
     if (sb) sb.classList.remove('collapsed');
     const icon = document.getElementById('s-toggle-icon');
@@ -3870,6 +3873,14 @@ function goPage(p) {
     document.getElementById('page-commissions').classList.add('active');
     const cn=document.getElementById('nav-commissions');
     if(cn)cn.classList.add('active');
+    /* auto-collapse sidebar for the wide 2-card layout */
+    const sbC = document.querySelector('.sidebar');
+    if (sbC && !sbC.classList.contains('collapsed')) {
+      sbC.classList.add('collapsed');
+      const iconC = document.getElementById('s-toggle-icon');
+      if (iconC) iconC.className = 'ti ti-layout-sidebar-left-expand';
+      sidebarAutoCollapsed = true;
+    }
   } else if(p==='keys'){
     document.getElementById('page-keys').classList.add('active');
     const kn=document.getElementById('nav-keys');
