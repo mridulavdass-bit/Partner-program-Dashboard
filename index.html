@@ -983,7 +983,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 /* ── TIMELINE DRAWER (right side, 380px wide) ── */
 .tl-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.35);z-index:150;backdrop-filter:blur(1px);}
 .tl-overlay.open{display:block;}
-.tl-drawer{position:fixed;top:0;right:0;bottom:0;width:380px;background:var(--white);box-shadow:-8px 0 32px rgba(0,0,0,.12);transform:translateX(100%);transition:transform .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;z-index:151;overflow:hidden;}
+.tl-drawer{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:100vw;background:var(--white);box-shadow:-8px 0 32px rgba(0,0,0,.12);transform:translateX(100%);transition:transform .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;z-index:151;overflow:hidden;}
 .tl-drawer.open{transform:translateX(0);}
 
 .tl-header{padding:16px 18px 12px;flex-shrink:0;}
@@ -1372,6 +1372,127 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 .pl-mini-label{font-size:11px;color:var(--tm);}
 .pl-mini-val{font-size:13px;font-weight:500;color:var(--tp);}
 
+.page-pad{padding:28px 32px 40px;}
+.page-pad-wide{padding:28px 40px 40px;}
+.im-side-220{display:grid;grid-template-columns:220px 1fr;}
+.im-side-240{display:grid;grid-template-columns:240px 1fr;}
+.grid-2col{display:grid;grid-template-columns:1fr 1fr;}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════ */
+html,body{overflow-x:hidden;}
+img{max-width:100%;}
+
+/* ── ≤1024px : tighten the widest grids for tablet ── */
+@media (max-width:1024px){
+  .cards4,.moa-cards,.cards3,.pc4-grid{grid-template-columns:repeat(2,1fr);}
+  .va-fields-grid,.inv-bank-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ── ≤900px : sidebar auto-collapses to icon rail; fixed side-panel layouts stack ── */
+@media (max-width:900px){
+  .sidebar{width:56px;}
+  .sidebar .s-co,.sidebar .nav-label,.sidebar .nav-section{opacity:0;width:0;pointer-events:none;}
+  .sidebar .nav-item{padding:10px 0;justify-content:center;}
+  .sidebar .nav-group-chev,.sidebar .nav-sub{display:none;}
+  .sidebar .s-footer{padding:10px 4px;}
+  .sidebar .s-footer-logo{opacity:0;width:0;pointer-events:none;}
+  .s-toggle{display:none;}
+  .va-layout,.im-mail-panel,.pcfg-tabs,.im-side-220,.im-side-240{grid-template-columns:1fr;}
+  .im-side-220 > div:first-child,
+  .im-side-240 > div:first-child{border-right:none;border-bottom:1px solid var(--border);}
+}
+
+/* ── ≤768px : page padding, headers & toolbars wrap ── */
+@media (max-width:768px){
+  .page-pad,.page-pad-wide,.moa-page,.wh-page,.km-page,.tm-page,.pcfg-wrap,.pc4-wrap,.pc2-wrap,.ma-detail-view{padding-left:18px;padding-right:18px;}
+  .ph-row{flex-wrap:wrap;gap:12px;}
+  .moa-header,.wh-header,.km-header,.tm-header{flex-wrap:wrap;gap:12px;}
+  .toolbar{flex-wrap:wrap;height:auto;}
+  .toolbar .sb{flex-basis:100%;}
+  .toolbar .tsep{display:none;}
+}
+
+/* ── ≤700px : data tables become stacked label/value cards ── */
+@media (max-width:700px){
+  .ptbl,.moa-tbl,.tm-tbl,.km-tbl,.pc-tbl,.dl-tbl,.txn-tbl,.sdt{width:100%;}
+  .ptbl thead,.moa-tbl thead,.tm-tbl thead,.km-tbl thead,.pc-tbl thead,.dl-tbl thead,.txn-tbl thead,.sdt thead{display:none;}
+  .ptbl tbody,.moa-tbl tbody,.tm-tbl tbody,.km-tbl tbody,.pc-tbl tbody,.dl-tbl tbody,.txn-tbl tbody,.sdt tbody{display:block;}
+  .ptbl tbody tr,.moa-tbl tbody tr,.tm-tbl tbody tr,.km-tbl tbody tr,.pc-tbl tbody tr,.dl-tbl tbody tr,.txn-tbl tbody tr,.sdt tbody tr{
+    display:block;border:1px solid var(--border);border-radius:var(--rmd);margin:10px 12px;overflow:hidden;background:var(--white);
+  }
+  .ptbl tbody tr:hover,.moa-tbl tbody tr:hover,.tm-tbl tbody tr:hover,.km-tbl tbody tr:hover,.pc-tbl tbody tr:hover,.dl-tbl tbody tr:hover,.txn-tbl tbody tr:hover{background:var(--white);}
+  .ptbl tbody tr.empty-row,.moa-tbl tbody tr.empty-row,.tm-tbl tbody tr.empty-row,.km-tbl tbody tr.empty-row{border:none;}
+  .ptbl td,.moa-tbl td,.tm-tbl td,.km-tbl td,.pc-tbl td,.dl-tbl td,.txn-tbl td,.sdt td{
+    display:block;
+    width:auto;max-width:100%;padding:9px 14px;border-bottom:1px solid #f0f4fa;text-align:left;
+    white-space:normal;overflow-wrap:anywhere;word-break:break-word;
+  }
+  .ptbl td:last-child,.moa-tbl td:last-child,.tm-tbl td:last-child,.km-tbl td:last-child,.pc-tbl td:last-child,.dl-tbl td:last-child,.txn-tbl td:last-child,.sdt td:last-child{border-bottom:none;}
+  .ptbl td[colspan],.moa-tbl td[colspan],.tm-tbl td[colspan],.km-tbl td[colspan]{text-align:center;}
+  .ptbl td[data-label]::before,.moa-tbl td[data-label]::before,.tm-tbl td[data-label]::before,.km-tbl td[data-label]::before,.pc-tbl td[data-label]::before,.dl-tbl td[data-label]::before,.txn-tbl td[data-label]::before,.sdt td[data-label]::before{
+    content:attr(data-label);display:block;font-size:10.5px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;
+  }
+  .ptbl td>*,.moa-tbl td>*,.tm-tbl td>*,.km-tbl td>*,.pc-tbl td>*,.dl-tbl td>*,.txn-tbl td>*,.sdt td>*{max-width:100%;}
+  .tm-member-cell,.pay-method{min-width:0;}
+  .tm-member-cell>div:last-child{min-width:0;overflow-wrap:anywhere;}
+  .moa-tbl-wrap,.tm-tbl-wrap,.tw,.pc-table-wrap,.km-table-wrap{background:var(--surf);padding:2px 0;}
+  .moa-onb-id{white-space:normal;}
+  .inv-items{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .inv-tbl{min-width:520px;}
+  .moa-tabs,.wh-tabs,.md-tabs,.det-tabs,.sett-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;}
+  .moa-tab,.wh-tab,.md-tab,.dtab,.sett-tab{flex-shrink:0;}
+  .txn-sub-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .txn-sub-tab{flex-shrink:0;white-space:nowrap;}
+}
+
+/* ── ≤640px : remaining multi-column grids stack to one column ── */
+@media (max-width:640px){
+  .cards4,.cards3,.moa-cards,.fgrid,.sg,.exc-fgrid,.fr.c2,.fr.c3,.va-fields-grid,
+  .sett-bd-grid,.p-grid,.sett-bank-grid,.sett-cycle-card,.inv-parties,.inv-tot-grid,
+  .inv-bank-grid,.gen-grid,.pc4-grid,.pc2-ga-head,.pc2-ga-row,.grid-2col,
+  .pcfg-col-head.ga,.pcfg-row.ga,.pcfg-col-head.pp,.pcfg-row.pp,.pcfg-platform-row{
+    grid-template-columns:1fr!important;
+  }
+  .pcfg-col-head{display:none;}
+  .inv-party:first-child{border-right:none;border-bottom:1px solid var(--border);}
+  .inv-tot-left{padding-right:0;border-right:none;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:6px;}
+  .inv-doc-header{flex-direction:column;gap:14px;}
+  .inv-meta{text-align:left;}
+  .inv-footer{flex-direction:column;gap:12px;align-items:flex-start;}
+  .inv-sig{text-align:left;}
+  .inv-sig .sig-line{margin:24px auto 6px 0;}
+  .moa-search-row{flex-wrap:wrap;}
+  .moa-search-box{flex:1 1 100%;}
+  .km-filters{flex-wrap:wrap;gap:10px;}
+  .km-filter-chips{flex-wrap:wrap;}
+}
+
+/* ── ≤560px : topbar & small polish ── */
+@media (max-width:560px){
+  .topbar{padding:0 12px;}
+  .tb-sep,.tb-pid{display:none;}
+}
+
+/* ── ≤480px : phones — tighten padding, headings, buttons ── */
+@media (max-width:480px){
+  .page-pad,.page-pad-wide,.moa-page,.wh-page,.km-page,.tm-page,.pcfg-wrap,.pc4-wrap,.pc2-wrap,.ma-detail-view{padding-left:14px;padding-right:14px;padding-top:18px;}
+  .ph h1,.moa-title h1,.wh-title h1,.km-title,.md-name{font-size:18px;}
+  .dh,.db,.df,.wh-modal-body,.km-modal-body{padding-left:16px;padding-right:16px;}
+  .efl,.efg2,.va-acct-btns,.vss-options{grid-template-columns:1fr!important;}
+  .moa-btns,.wh-header-btns{width:100%;display:flex;}
+  .moa-btns .btn-invite-m,.moa-btns .btn-onboard-m,.wh-header-btns .btn-docs,.wh-header-btns .btn-add-ep{flex:1;justify-content:center;}
+}
+
+/* ── ≤400px : very small phones ── */
+@media (max-width:400px){
+  .tl-contact-row{grid-template-columns:1fr;}
+  .wh-confirm-box{width:90vw;}
+  .im-modal.compact{width:92vw;}
+  .inv-bank-grid{grid-template-columns:1fr!important;}
+}
+
 </style>
 </head>
 <body>
@@ -1413,7 +1534,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
     <div><span class="sandbox-badge">Sandbox</span></div>
     <div class="tb-right">
       <strong>Yogesh Lokhande</strong><span class="tb-sep">|</span>
-      <span>Partner ID PTR-2021-YL-004</span>
+      <span class="tb-pid">Partner ID PTR-2021-YL-004</span>
       <div class="avatar">YL</div>
     </div>
   </div>
@@ -2124,7 +2245,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
   <div class="page" id="page-gst">
 
     <!-- Invoice list view -->
-    <div id="gst-list-view" style="padding:28px 32px 40px;">
+    <div id="gst-list-view" class="page-pad">
       <div class="ph-row">
         <div class="ph"><h1>GST Invoices</h1><p>Generate, manage and send GST-compliant invoices to merchants</p></div>
         <div class="ph-actions">
@@ -2895,7 +3016,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 
         <!-- ════ VIRTUAL ACCOUNTS PANEL ════ -->
         <div id="va-panel-accounts" style="display:block;">
-          <div style="display:grid;grid-template-columns:220px 1fr;min-height:100%;">
+          <div class="im-side-220" style="min-height:100%;">
 
             <!-- LEFT: region list -->
             <div style="border-right:1px solid var(--border);padding:16px 0;">
@@ -2954,7 +3075,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
               </div>
 
               <!-- CTAs -->
-              <div style="padding:14px 20px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div class="grid-2col" style="padding:14px 20px;border-top:1px solid var(--border);gap:10px;">
                 <button class="va-cta-share" onclick="switchVaDrawerTab('share')">
                   <i class="ti ti-share" style="font-size:14px;"></i> Share
                 </button>
@@ -2969,7 +3090,7 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 
         <!-- ════ PLATFORM WITHDRAWAL PANEL ════ -->
         <div id="va-panel-platforms" style="display:none;">
-          <div style="display:grid;grid-template-columns:240px 1fr;min-height:400px;">
+          <div class="im-side-240" style="min-height:400px;">
 
             <!-- LEFT: bank region + account details -->
             <div style="border-right:1px solid var(--border);padding:16px 0;">
@@ -3055,15 +3176,15 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
                 </div>
                 <div style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:4px;" id="pl-sett-title">Amazon settlement statement report</div>
                 <div style="height:1px;background:var(--border);margin:14px 0;"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                <div class="grid-2col" style="gap:12px;margin-bottom:12px;">
                   <div class="fg"><label class="flbl">Currency</label><input class="fi" id="pl-sett-cur" type="text" placeholder="e.g. AUD" style="height:36px;"></div>
                   <div class="fg"><label class="flbl">Account Number</label><input class="fi" id="pl-sett-acct" type="text" placeholder="e.g. 024434493" style="height:36px;"></div>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                <div class="grid-2col" style="gap:12px;margin-bottom:12px;">
                   <div class="fg"><label class="flbl">Routing Code</label><input class="fi" id="pl-sett-routing" type="text" placeholder="e.g. 252000" style="height:36px;"></div>
                   <div class="fg"><label class="flbl">Seller Legal Name</label><input class="fi" id="pl-sett-legal" type="text" placeholder="e.g. Sarthak Kudale" style="height:36px;"></div>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                <div class="grid-2col" style="gap:12px;margin-bottom:12px;">
                   <div class="fg"><label class="flbl">Seller DBA Name</label><input class="fi" id="pl-sett-dba" type="text" placeholder="e.g. Service Ease" style="height:36px;"></div>
                   <div class="fg"><label class="flbl">Country</label><input class="fi" id="pl-sett-country" type="text" placeholder="Enter Country" style="height:36px;"></div>
                 </div>
@@ -3148,13 +3269,13 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
 
   <!-- ════ COMMISSIONS PAGE ════ -->
   <div class="page" id="page-commissions">
-    <div style="padding:28px 40px 40px;">
+    <div class="page-pad-wide">
       <div style="margin-bottom:24px;">
         <h1 style="font-size:22px;font-weight:700;color:var(--tp);letter-spacing:-.3px;margin-bottom:6px;">Commission Pricing</h1>
         <p style="font-size:13.5px;color:var(--ts);">Your commission rates from PayGlocal and the base pricing offered to your merchants.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+      <div class="grid-2col" style="gap:20px;align-items:start;">
 
         <!-- Card 1: Partner commission rates (no Remarks) -->
         <div class="pc-section" style="margin-bottom:0;">
@@ -3169,12 +3290,12 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
             <table class="pc-tbl">
               <thead><tr><th>Product</th><th>Commission type</th><th>Rate</th></tr></thead>
               <tbody>
-                <tr><td>Global Accounts (FX)</td><td>Revenue share</td><td>15% of FX spread</td></tr>
-                <tr><td>International Cards</td><td>Revenue share</td><td>0.30% of MDR</td></tr>
-                <tr><td>Domestic Cards</td><td>Revenue share</td><td>0.20% of MDR</td></tr>
-                <tr><td>UPI</td><td>Flat fee</td><td>—</td></tr>
-                <tr><td>Netbanking</td><td>Revenue share</td><td>0.25% of MDR</td></tr>
-                <tr><td>Onboarding bonus</td><td>One-time</td><td>—</td></tr>
+                <tr><td data-label="Product">Global Accounts (FX)</td><td data-label="Commission type">Revenue share</td><td data-label="Rate">15% of FX spread</td></tr>
+                <tr><td data-label="Product">International Cards</td><td data-label="Commission type">Revenue share</td><td data-label="Rate">0.30% of MDR</td></tr>
+                <tr><td data-label="Product">Domestic Cards</td><td data-label="Commission type">Revenue share</td><td data-label="Rate">0.20% of MDR</td></tr>
+                <tr><td data-label="Product">UPI</td><td data-label="Commission type">Flat fee</td><td data-label="Rate">—</td></tr>
+                <tr><td data-label="Product">Netbanking</td><td data-label="Commission type">Revenue share</td><td data-label="Rate">0.25% of MDR</td></tr>
+                <tr><td data-label="Product">Onboarding bonus</td><td data-label="Commission type">One-time</td><td data-label="Rate">—</td></tr>
               </tbody>
             </table>
           </div>
@@ -3194,24 +3315,24 @@ html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:
               <thead><tr><th>Product</th><th>Merchant MDR / rate</th><th>Flat per txn</th><th>Your rate</th><th>Your spread</th></tr></thead>
               <tbody>
                 <tr>
-                  <td>Global Accounts (FX)</td><td>0.55% FX spread</td><td>—</td><td>0.47% FX spread</td>
-                  <td><span style="color:#166534;font-weight:600;">0.08% (15% share)</span></td>
+                  <td data-label="Product">Global Accounts (FX)</td><td data-label="Merchant MDR / rate">0.55% FX spread</td><td data-label="Flat per txn">—</td><td data-label="Your rate">0.47% FX spread</td>
+                  <td data-label="Your spread"><span style="color:#166534;font-weight:600;">0.08% (15% share)</span></td>
                 </tr>
                 <tr>
-                  <td>International Cards</td><td>2.50% MDR + ₹10</td><td>₹10.00</td><td>2.20% + ₹9.00</td>
-                  <td><span style="color:#166534;font-weight:600;">0.30% + ₹1.00</span></td>
+                  <td data-label="Product">International Cards</td><td data-label="Merchant MDR / rate">2.50% MDR + ₹10</td><td data-label="Flat per txn">₹10.00</td><td data-label="Your rate">2.20% + ₹9.00</td>
+                  <td data-label="Your spread"><span style="color:#166534;font-weight:600;">0.30% + ₹1.00</span></td>
                 </tr>
                 <tr>
-                  <td>Domestic Cards</td><td>1.50% MDR + ₹2</td><td>₹2.00</td><td>1.30% + ₹1.50</td>
-                  <td><span style="color:#166534;font-weight:600;">0.20% + ₹0.50</span></td>
+                  <td data-label="Product">Domestic Cards</td><td data-label="Merchant MDR / rate">1.50% MDR + ₹2</td><td data-label="Flat per txn">₹2.00</td><td data-label="Your rate">1.30% + ₹1.50</td>
+                  <td data-label="Your spread"><span style="color:#166534;font-weight:600;">0.20% + ₹0.50</span></td>
                 </tr>
                 <tr>
-                  <td>UPI</td><td>₹0</td><td>₹0</td><td>—</td>
-                  <td><span style="color:#166534;font-weight:600;">₹0.25 flat</span></td>
+                  <td data-label="Product">UPI</td><td data-label="Merchant MDR / rate">₹0</td><td data-label="Flat per txn">₹0</td><td data-label="Your rate">—</td>
+                  <td data-label="Your spread"><span style="color:#166534;font-weight:600;">₹0.25 flat</span></td>
                 </tr>
                 <tr>
-                  <td>Netbanking</td><td>1.50% + ₹5</td><td>₹5.00</td><td>1.25% + ₹4.25</td>
-                  <td><span style="color:#166534;font-weight:600;">0.25% + ₹0.75</span></td>
+                  <td data-label="Product">Netbanking</td><td data-label="Merchant MDR / rate">1.50% + ₹5</td><td data-label="Flat per txn">₹5.00</td><td data-label="Your rate">1.25% + ₹4.25</td>
+                  <td data-label="Your spread"><span style="color:#166534;font-weight:600;">0.25% + ₹0.75</span></td>
                 </tr>
               </tbody>
             </table>
@@ -3488,13 +3609,13 @@ function renderTxnTable(list) {
   if(!list.length){b.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--tm);">No transactions found</td></tr>`;return;}
   b.innerHTML=list.map(t=>`
     <tr>
-      <td><div class="txn-amount">${t.amount} <span>${t.cur}</span></div></td>
-      <td>${txnStatusBadge(t.status)}</td>
-      <td><div class="pay-method">${cardIcon(t.card)}<span class="pay-masked">${t.masked}</span></div></td>
-      <td><div class="txn-remitter">${t.remitter}<small>${t.email}</small></div></td>
-      <td style="font-size:12.5px;color:var(--ts);">${t.midType}</td>
-      <td style="font-size:12.5px;color:var(--ts);white-space:nowrap;">${t.date}</td>
-      <td class="txn-id">${t.txnId}</td>
+      <td data-label="Amount"><div class="txn-amount">${t.amount} <span>${t.cur}</span></div></td>
+      <td data-label="Status">${txnStatusBadge(t.status)}</td>
+      <td data-label="Payment Method"><div class="pay-method">${cardIcon(t.card)}<span class="pay-masked">${t.masked}</span></div></td>
+      <td data-label="Remitter Name"><div class="txn-remitter">${t.remitter}<small>${t.email}</small></div></td>
+      <td data-label="MID Type" style="font-size:12.5px;color:var(--ts);">${t.midType}</td>
+      <td data-label="Date and time" style="font-size:12.5px;color:var(--ts);white-space:nowrap;">${t.date}</td>
+      <td class="txn-id" data-label="Transaction ID">${t.txnId}</td>
     </tr>`).join('');
 }
 
@@ -3985,9 +4106,9 @@ function detHTML(m){
         <div class="sc"><div class="sc-ic" style="background:#f0fdfa;color:#0f766e;"><i class="ti ti-calendar-repeat"></i></div><div class="sc-l">Monthly platform fee</div><div class="sc-v">₹${Number(m.monthly).toLocaleString('en-IN')}</div><div class="sc-s">${Number(m.monthly)===0?'No monthly charge':'Billed 1st of each month'}</div></div>
       </div>
       <table class="sdt"><thead><tr><th>Item</th><th>Amount</th><th>Frequency</th><th>Notes</th></tr></thead><tbody>
-        <tr><td>Setup fee</td><td class="${Number(m.setup)===0?'muted':'bold'}">₹${Number(m.setup).toLocaleString('en-IN')}</td><td class="muted">One-time</td><td class="muted">${Number(m.setup)===0?'Waived':'On activation'}</td></tr>
-        <tr><td>Monthly platform fee</td><td class="${Number(m.monthly)===0?'muted':'bold'}">₹${Number(m.monthly).toLocaleString('en-IN')}</td><td class="muted">Monthly</td><td class="muted">${Number(m.monthly)===0?'Not applicable':'Auto-billed'}</td></tr>
-        <tr><td>Annual recurring total</td><td class="blue">₹${(Number(m.monthly)*12).toLocaleString('en-IN')}</td><td class="muted">Annual</td><td class="muted">Monthly × 12</td></tr>
+        <tr><td data-label="Item">Setup fee</td><td data-label="Amount" class="${Number(m.setup)===0?'muted':'bold'}">₹${Number(m.setup).toLocaleString('en-IN')}</td><td data-label="Frequency" class="muted">One-time</td><td data-label="Notes" class="muted">${Number(m.setup)===0?'Waived':'On activation'}</td></tr>
+        <tr><td data-label="Item">Monthly platform fee</td><td data-label="Amount" class="${Number(m.monthly)===0?'muted':'bold'}">₹${Number(m.monthly).toLocaleString('en-IN')}</td><td data-label="Frequency" class="muted">Monthly</td><td data-label="Notes" class="muted">${Number(m.monthly)===0?'Not applicable':'Auto-billed'}</td></tr>
+        <tr><td data-label="Item">Annual recurring total</td><td data-label="Amount" class="blue">₹${(Number(m.monthly)*12).toLocaleString('en-IN')}</td><td data-label="Frequency" class="muted">Annual</td><td data-label="Notes" class="muted">Monthly × 12</td></tr>
       </tbody></table>
     </div>
     <div class="tp ${a('notes')}">
@@ -4089,10 +4210,10 @@ function renderGst(list){
     const m=MERCHANTS.find(x=>x.name===inv.merchant)||{};
     const product=productMap[m.category]||'All products';
     return '<tr>'
-      +'<td style="font-family:monospace;font-size:13px;color:var(--ts);">'+(m.id||'—')+'</td>'
-      +'<td style="font-size:13.5px;color:var(--tp);">'+product+'</td>'
-      +'<td style="font-size:13px;color:var(--ts);">'+inv.period+' — '+inv.month+'</td>'
-      +'<td><button class="btn btn-g" style="height:30px;font-size:12px;padding:0 12px;" onclick="downloadInvoice(\''+inv.no+'\')"><i class="ti ti-download" style="font-size:12px;"></i> Download</button></td>'
+      +'<td data-label="Merchant ID" style="font-family:monospace;font-size:13px;color:var(--ts);">'+(m.id||'—')+'</td>'
+      +'<td data-label="Product type" style="font-size:13.5px;color:var(--tp);">'+product+'</td>'
+      +'<td data-label="Time period" style="font-size:13px;color:var(--ts);">'+inv.period+' — '+inv.month+'</td>'
+      +'<td data-label="Download"><button class="btn btn-g" style="height:30px;font-size:12px;padding:0 12px;" onclick="downloadInvoice(\''+inv.no+'\')"><i class="ti ti-download" style="font-size:12px;"></i> Download</button></td>'
       +'</tr>';
   }).join('');
 }
@@ -4430,12 +4551,12 @@ function renderDlTable() {
   if (!tbody) return;
   tbody.innerHTML = DL_LOGS.map(l=>`
     <tr>
-      <td style="font-size:12px;font-family:monospace;color:var(--ts);">${l.ep}</td>
-      <td><span class="wh-event-chip">${l.event}</span></td>
-      <td>${l.status==='ok'?'<span class="dl-status-ok"><i class="ti ti-check" style="font-size:11px;"></i> 200 OK</span>':'<span class="dl-status-fail"><i class="ti ti-x" style="font-size:11px;"></i> Failed</span>'}</td>
-      <td style="font-family:monospace;">${l.code}</td>
-      <td style="color:var(--ts);">${l.time}</td>
-      <td style="color:var(--ts);">${l.dur}</td>
+      <td data-label="Endpoint" style="font-size:12px;font-family:monospace;color:var(--ts);">${l.ep}</td>
+      <td data-label="Event"><span class="wh-event-chip">${l.event}</span></td>
+      <td data-label="Status">${l.status==='ok'?'<span class="dl-status-ok"><i class="ti ti-check" style="font-size:11px;"></i> 200 OK</span>':'<span class="dl-status-fail"><i class="ti ti-x" style="font-size:11px;"></i> Failed</span>'}</td>
+      <td data-label="Response code" style="font-family:monospace;">${l.code}</td>
+      <td data-label="Timestamp" style="color:var(--ts);">${l.time}</td>
+      <td data-label="Duration" style="color:var(--ts);">${l.dur}</td>
     </tr>`).join('');
 }
 
@@ -4674,13 +4795,13 @@ function renderKmTable() {
   if (kmCurrentPage > totalPages) kmCurrentPage = 1;
   const start = (kmCurrentPage - 1) * KM_PAGE_SIZE;
   const page = filtered.slice(start, start + KM_PAGE_SIZE);
+  const colMap = {keyId:'Key ID',status:'Status',genDate:'Date of Generation',expDate:'Date of Expiry',type:'Type',actions:'Actions'};
 
   // update thead based on visible columns
   const tbl = tbody.closest('table');
   if (tbl) {
     const thead = tbl.querySelector('thead tr');
     if (thead) {
-      const colMap = {keyId:'Key ID',status:'Status',genDate:'Date of Generation',expDate:'Date of Expiry',type:'Type',actions:'Actions'};
       thead.innerHTML = KM_ALL_COLUMNS.filter(c=>c.visible).map(c=>`<th>${colMap[c.key]||c.label}</th>`).join('');
     }
   }
@@ -4692,12 +4813,13 @@ function renderKmTable() {
       const rowIdx = start + idx;
       const vis = KM_ALL_COLUMNS.filter(c=>c.visible);
       return '<tr>' + vis.map(c => {
-        if (c.key==='keyId') return `<td><span class="km-key-id">${k.id}</span></td>`;
-        if (c.key==='status') return `<td><span class="${k.status==='active'?'km-status-active':'km-status-inactive'}">${k.status==='active'?'Active':'Inactive'}</span></td>`;
-        if (c.key==='genDate') return `<td style="color:var(--ts);font-size:13px;">${k.generated}</td>`;
-        if (c.key==='expDate') return `<td style="color:var(--ts);font-size:13px;">${k.expiry}</td>`;
-        if (c.key==='type') return `<td class="km-type-badge">${k.type}</td>`;
-        if (c.key==='actions') return `<td><div class="km-popover-wrap"><button class="km-action-btn" onclick="toggleKmPopover(event,'${rowIdx}')"><i class="ti ti-plus"></i></button><div class="km-popover" id="km-pop-${rowIdx}"><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-copy" style="font-size:14px;color:var(--tm);"></i> Copy key ID</div><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-eye" style="font-size:14px;color:var(--tm);"></i> View key</div><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-refresh" style="font-size:14px;color:var(--tm);"></i> Rotate key</div><div class="km-pop-divider"></div><div class="km-pop-item danger" onclick="closeKmPopovers()"><i class="ti ti-trash" style="font-size:14px;"></i> Revoke key</div></div></div></td>`;
+        const dl = colMap[c.key]||c.label;
+        if (c.key==='keyId') return `<td data-label="${dl}"><span class="km-key-id">${k.id}</span></td>`;
+        if (c.key==='status') return `<td data-label="${dl}"><span class="${k.status==='active'?'km-status-active':'km-status-inactive'}">${k.status==='active'?'Active':'Inactive'}</span></td>`;
+        if (c.key==='genDate') return `<td data-label="${dl}" style="color:var(--ts);font-size:13px;">${k.generated}</td>`;
+        if (c.key==='expDate') return `<td data-label="${dl}" style="color:var(--ts);font-size:13px;">${k.expiry}</td>`;
+        if (c.key==='type') return `<td data-label="${dl}" class="km-type-badge">${k.type}</td>`;
+        if (c.key==='actions') return `<td data-label="${dl}"><div class="km-popover-wrap"><button class="km-action-btn" onclick="toggleKmPopover(event,'${rowIdx}')"><i class="ti ti-plus"></i></button><div class="km-popover" id="km-pop-${rowIdx}"><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-copy" style="font-size:14px;color:var(--tm);"></i> Copy key ID</div><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-eye" style="font-size:14px;color:var(--tm);"></i> View key</div><div class="km-pop-item" onclick="closeKmPopovers()"><i class="ti ti-refresh" style="font-size:14px;color:var(--tm);"></i> Rotate key</div><div class="km-pop-divider"></div><div class="km-pop-item danger" onclick="closeKmPopovers()"><i class="ti ti-trash" style="font-size:14px;"></i> Revoke key</div></div></div></td>`;
         return '<td></td>';
       }).join('') + '</tr>';
     }).join('');
@@ -4856,13 +4978,13 @@ function renderTmTable() {
     return;
   }
   tbody.innerHTML = filtered.map(m => '<tr>' + vis.map(c=>{
-    if(c.key==='name') return `<td><div class="tm-member-cell"><div class="tm-avatar">${m.initials}</div><div><div class="tm-name">${m.fname} ${m.lname}</div><div class="tm-email">${m.email}</div></div></div></td>`;
-    if(c.key==='role') return `<td style="font-size:13.5px;">${m.role}</td>`;
-    if(c.key==='username') return `<td style="font-size:13.5px;color:var(--ts);">${m.username||'—'}</td>`;
-    if(c.key==='status') return `<td><span class="${m.status==='enabled'?'tm-enabled':m.status==='invited'?'tm-invited':'tm-disabled'}">${m.status.charAt(0).toUpperCase()+m.status.slice(1)}</span></td>`;
-    if(c.key==='lta') return `<td style="text-align:center;"><div class="tm-check-icon"><i class="ti ti-check" style="font-size:11px;"></i></div></td>`;
-    if(c.key==='joined') return `<td style="font-size:13px;color:var(--ts);white-space:nowrap;">${m.joined||'—'}</td>`;
-    if(c.key==='actions') return `<td><div class="tm-actions-wrap"><button class="tm-action-btn" onclick="toggleTmAction(event,${m.id})"><i class="ti ti-dots-vertical"></i></button><div class="tm-action-popover" id="tm-pop-${m.id}"><div class="tm-pop-item" onclick="closeTmPopovers()"><i class="ti ti-edit" style="font-size:14px;color:var(--tm);"></i> Edit member</div><div class="tm-pop-item" onclick="closeTmPopovers()"><i class="ti ti-eye" style="font-size:14px;color:var(--tm);"></i> View profile</div><div class="tm-pop-item" onclick="closeTmPopovers()">${m.status==='enabled'?'<i class="ti ti-user-off" style="font-size:14px;color:var(--tm);"></i> Disable access':'<i class="ti ti-user-check" style="font-size:14px;color:var(--tm);"></i> Enable access'}</div><div class="tm-pop-divider"></div><div class="tm-pop-item danger" onclick="closeTmPopovers()"><i class="ti ti-trash" style="font-size:14px;"></i> Remove member</div></div></div></td>`;
+    if(c.key==='name') return `<td data-label="${c.label}"><div class="tm-member-cell"><div class="tm-avatar">${m.initials}</div><div><div class="tm-name">${m.fname} ${m.lname}</div><div class="tm-email">${m.email}</div></div></div></td>`;
+    if(c.key==='role') return `<td data-label="${c.label}" style="font-size:13.5px;">${m.role}</td>`;
+    if(c.key==='username') return `<td data-label="${c.label}" style="font-size:13.5px;color:var(--ts);">${m.username||'—'}</td>`;
+    if(c.key==='status') return `<td data-label="${c.label}"><span class="${m.status==='enabled'?'tm-enabled':m.status==='invited'?'tm-invited':'tm-disabled'}">${m.status.charAt(0).toUpperCase()+m.status.slice(1)}</span></td>`;
+    if(c.key==='lta') return `<td data-label="${c.label}" style="text-align:center;"><div class="tm-check-icon"><i class="ti ti-check" style="font-size:11px;"></i></div></td>`;
+    if(c.key==='joined') return `<td data-label="${c.label}" style="font-size:13px;color:var(--ts);white-space:nowrap;">${m.joined||'—'}</td>`;
+    if(c.key==='actions') return `<td data-label="${c.label}"><div class="tm-actions-wrap"><button class="tm-action-btn" onclick="toggleTmAction(event,${m.id})"><i class="ti ti-dots-vertical"></i></button><div class="tm-action-popover" id="tm-pop-${m.id}"><div class="tm-pop-item" onclick="closeTmPopovers()"><i class="ti ti-edit" style="font-size:14px;color:var(--tm);"></i> Edit member</div><div class="tm-pop-item" onclick="closeTmPopovers()"><i class="ti ti-eye" style="font-size:14px;color:var(--tm);"></i> View profile</div><div class="tm-pop-item" onclick="closeTmPopovers()">${m.status==='enabled'?'<i class="ti ti-user-off" style="font-size:14px;color:var(--tm);"></i> Disable access':'<i class="ti ti-user-check" style="font-size:14px;color:var(--tm);"></i> Enable access'}</div><div class="tm-pop-divider"></div><div class="tm-pop-item danger" onclick="closeTmPopovers()"><i class="ti ti-trash" style="font-size:14px;"></i> Remove member</div></div></div></td>`;
     return '<td></td>';
   }).join('')+'</tr>').join('');
 }
@@ -4976,11 +5098,11 @@ function renderMoaTable() {
   if (!tbody) return;
   tbody.innerHTML = page.map(m=>`
     <tr onclick="openTlDrawer('${m.id}')">
-      <td class="moa-onb-id">${m.id}</td>
-      <td style="font-size:14px;font-weight:500;">${m.name}</td>
-      <td><div class="moa-contact-email">${m.email}</div><div class="moa-contact-phone"><i class="ti ti-phone" style="font-size:11px;"></i> ${m.phone}</div></td>
-      <td>${statusBadgeMoa(m.status)}</td>
-      <td style="font-size:13px;color:var(--ts);">${m.date}<br><span style="font-size:12px;color:var(--tm);">${m.time}</span></td>
+      <td class="moa-onb-id" data-label="Onboarding ID">${m.id}</td>
+      <td data-label="Merchant Name" style="font-size:14px;font-weight:500;">${m.name}</td>
+      <td data-label="Merchant Contact"><div class="moa-contact-email">${m.email}</div><div class="moa-contact-phone"><i class="ti ti-phone" style="font-size:11px;"></i> ${m.phone}</div></td>
+      <td data-label="Activation Status">${statusBadgeMoa(m.status)}</td>
+      <td data-label="Date of Registration" style="font-size:13px;color:var(--ts);">${m.date}<br><span style="font-size:12px;color:var(--tm);">${m.time}</span></td>
     </tr>`).join('');
 
   const showing = document.getElementById('moa-showing');
