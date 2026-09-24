@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>PayGlocal Partner Program</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0061e3">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Partner Program">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" rel="stylesheet">
@@ -1431,6 +1439,7 @@ img{max-width:100%;}
   }
   .ptbl td:last-child,.moa-tbl td:last-child,.tm-tbl td:last-child,.km-tbl td:last-child,.pc-tbl td:last-child,.dl-tbl td:last-child,.txn-tbl td:last-child,.sdt td:last-child{border-bottom:none;}
   .ptbl td[colspan],.moa-tbl td[colspan],.tm-tbl td[colspan],.km-tbl td[colspan]{text-align:center;}
+  .tm-tbl td:not([colspan]){text-align:left!important;}
   .ptbl td[data-label]::before,.moa-tbl td[data-label]::before,.tm-tbl td[data-label]::before,.km-tbl td[data-label]::before,.pc-tbl td[data-label]::before,.dl-tbl td[data-label]::before,.txn-tbl td[data-label]::before,.sdt td[data-label]::before{
     content:attr(data-label);display:block;font-size:10.5px;font-weight:600;color:var(--ts);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;
   }
@@ -1491,6 +1500,281 @@ img{max-width:100%;}
   .wh-confirm-box{width:90vw;}
   .im-modal.compact{width:92vw;}
   .inv-bank-grid{grid-template-columns:1fr!important;}
+}
+
+/* ── ≤640px : touch targets — comfortable tap sizes on phone ── */
+@media (max-width:640px){
+  .btn,.btn-p,.btn-g,.btn-danger,.tsel,.fi,.fsel,
+  .moa-tab,.wh-tab,.md-tab,.dtab,.sett-tab,.txn-sub-tab,.filter-chip,
+  .km-tool-btn,.btn-docs,.btn-add-ep,.btn-invite-m,.btn-onboard-m,.btn-create-key{
+    min-height:44px;
+  }
+  .icon-btn,.xbtn{width:40px;height:40px;}
+  .nav-item{min-height:44px;}
+  .km-chip,.km-ec-apply{min-height:40px;}
+  .avatar{width:36px;height:36px;}
+}
+
+/* ── Installed-app (standalone) polish: room for the notch / home indicator ── */
+@media (display-mode:standalone){
+  .topbar{height:auto;min-height:calc(52px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);}
+  .sidebar{padding-bottom:env(safe-area-inset-bottom);}
+  .df,.wh-modal-footer,.km-modal-footer{padding-bottom:max(14px, env(safe-area-inset-bottom));}
+}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE APP — purpose-built phone/tablet experience
+   Hidden by default; replaces the desktop sidebar layout at ≤900px.
+══════════════════════════════════════════════════════ */
+.mobile-app{display:none;}
+
+@media (max-width:900px){
+  .layout{display:none;}
+  .mobile-app{display:flex;flex-direction:column;height:100vh;height:100dvh;background:var(--bg);color:var(--tp);position:relative;overflow:hidden;}
+  .wh-toast{left:16px;right:16px;bottom:calc(86px + env(safe-area-inset-bottom));width:auto;justify-content:center;}
+}
+
+.m-header{flex-shrink:0;height:56px;padding:0 16px;padding-top:env(safe-area-inset-top);min-height:calc(56px + env(safe-area-inset-top));background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:relative;z-index:20;}
+.m-back{width:36px;height:36px;border-radius:50%;border:none;background:var(--surf);color:var(--tp);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0;}
+.m-back:active{background:var(--blue-light);}
+.m-header-brand{display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
+.m-logo{width:30px;height:30px;border-radius:8px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.m-header-brand span{font-size:14px;font-weight:600;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m-header-title{flex:1;min-width:0;font-size:16px;font-weight:600;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m-header-action{width:36px;height:36px;border-radius:50%;border:none;background:var(--surf);color:var(--ts);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;flex-shrink:0;position:relative;}
+.m-header-action:active{background:var(--blue-light);color:var(--blue);}
+.m-notif-dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#ef4444;border:1.5px solid var(--white);display:none;}
+.m-notif-dot.show{display:block;}
+
+.m-offline-banner{display:none;flex-shrink:0;background:#fffbeb;color:#92400e;border-bottom:1px solid #fde68a;font-size:12.5px;font-weight:500;padding:8px 16px;align-items:center;gap:7px;}
+.m-offline-banner.show{display:flex;}
+
+.m-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;}
+.m-screen{display:none;padding:16px 16px calc(24px + env(safe-area-inset-bottom));animation:mFadeIn .18s ease;}
+.m-screen.active{display:block;}
+@keyframes mFadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){.m-screen{animation:none;}}
+
+.m-bottomnav{flex-shrink:0;display:flex;background:var(--white);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);position:relative;z-index:20;}
+.m-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px 7px;background:none;border:none;color:var(--tm);cursor:pointer;font-family:'Inter',sans-serif;min-height:52px;}
+.m-nav-item .ti{font-size:21px;}
+.m-nav-item span{font-size:10.5px;font-weight:500;}
+.m-nav-item.active{color:var(--blue);}
+.m-nav-item:active{opacity:.7;}
+
+.m-greeting{margin-bottom:16px;}
+.m-greeting h1{font-size:19px;font-weight:700;color:var(--tp);letter-spacing:-.3px;}
+.m-greeting p{font-size:12.5px;color:var(--ts);margin-top:2px;}
+
+.m-perf-card{background:linear-gradient(135deg,var(--blue) 0%,#0052c2 100%);border-radius:var(--rlg);padding:20px;color:#fff;margin-bottom:14px;box-shadow:0 8px 20px rgba(0,97,227,.25);}
+.m-perf-label{font-size:12px;font-weight:500;color:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:space-between;}
+.m-perf-val{font-size:38px;font-weight:700;letter-spacing:-1px;line-height:1.15;margin-top:6px;}
+.m-perf-sub{font-size:11.5px;color:rgba(255,255,255,.7);margin-top:1px;}
+.m-perf-trend{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#bbf7d0;margin-top:10px;}
+
+.m-metric-row{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -16px 16px;padding:0 16px 2px;scrollbar-width:none;}
+.m-metric-row::-webkit-scrollbar{display:none;}
+.m-metric{flex:0 0 auto;min-width:108px;background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:13px 14px;box-shadow:var(--sh);}
+.m-metric-val{font-size:20px;font-weight:700;color:var(--tp);letter-spacing:-.3px;}
+.m-metric-label{font-size:11px;color:var(--ts);margin-top:3px;white-space:nowrap;}
+
+.m-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.m-qa-btn{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:14px 14px 13px;border-radius:var(--rmd);border:1px solid var(--border);background:var(--white);cursor:pointer;font-family:'Inter',sans-serif;text-align:left;min-height:44px;box-shadow:var(--sh);}
+.m-qa-btn.primary{background:var(--blue);border-color:var(--blue);}
+.m-qa-icon{width:32px;height:32px;border-radius:9px;background:var(--blue-light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.m-qa-btn.primary .m-qa-icon{background:rgba(255,255,255,.18);color:#fff;}
+.m-qa-btn-label{font-size:13.5px;font-weight:600;color:var(--tp);}
+.m-qa-btn.primary .m-qa-btn-label{color:#fff;}
+.m-qa-btn:active{transform:scale(.98);}
+
+.m-sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.m-sec-title{font-size:15px;font-weight:700;color:var(--tp);}
+.m-sec-link{font-size:12.5px;font-weight:600;color:var(--blue);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:3px;font-family:'Inter',sans-serif;padding:4px;}
+
+.m-insight-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:14px;margin-bottom:18px;box-shadow:var(--sh);}
+.m-insight-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.m-insight-icon{width:34px;height:34px;border-radius:9px;background:#fffbeb;color:#b45309;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.m-insight-title{font-size:14px;font-weight:600;color:var(--tp);}
+.m-insight-sub{font-size:11.5px;color:var(--ts);margin-top:1px;}
+.m-insight-rows{display:flex;flex-direction:column;gap:1px;}
+.m-insight-row{display:flex;align-items:center;justify-content:space-between;padding:10px 4px;border-top:1px solid #f0f4fa;cursor:pointer;min-height:44px;}
+.m-insight-row:active{background:var(--surf);}
+.m-insight-row-label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tp);}
+.m-insight-count{font-size:13px;font-weight:700;color:var(--tp);background:var(--surf);border-radius:20px;padding:2px 9px;min-width:22px;text-align:center;}
+
+.m-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);box-shadow:var(--sh);}
+.m-list{display:flex;flex-direction:column;gap:10px;}
+.m-row{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);cursor:pointer;box-shadow:var(--sh);min-height:44px;}
+.m-row:active{background:var(--surf);}
+.m-row-avatar{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;background:var(--blue-light);color:var(--blue);}
+.m-row-body{flex:1;min-width:0;}
+.m-row-title{font-size:13.5px;font-weight:600;color:var(--tp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m-row-sub{font-size:11.5px;color:var(--tm);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.m-row-meta{flex-shrink:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.m-row-date{font-size:11px;color:var(--tm);}
+.m-row-chev{color:var(--tm);font-size:16px;flex-shrink:0;}
+
+.m-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.m-pill-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.m-pill.accepted,.m-pill.active,.m-pill.paid,.m-pill.enabled{background:#f0fdf4;color:#166534;}
+.m-pill.accepted .m-pill-dot,.m-pill.active .m-pill-dot,.m-pill.paid .m-pill-dot,.m-pill.enabled .m-pill-dot{background:#22c55e;}
+.m-pill.pendency,.m-pill.pending,.m-pill.draft,.m-pill.invited{background:#fffbeb;color:#92400e;}
+.m-pill.pendency .m-pill-dot,.m-pill.pending .m-pill-dot,.m-pill.draft .m-pill-dot,.m-pill.invited .m-pill-dot{background:#f59e0b;}
+.m-pill.underreview,.m-pill.vkyc{background:#f0f9ff;color:#0369a1;}
+.m-pill.underreview .m-pill-dot,.m-pill.vkyc .m-pill-dot{background:#0ea5e9;}
+.m-pill.inprogress{background:#eff6ff;color:#1d4ed8;}
+.m-pill.inprogress .m-pill-dot{background:#3b82f6;}
+.m-pill.rejected,.m-pill.overdue,.m-pill.fail,.m-pill.disabled,.m-pill.inactive{background:#fff1f2;color:#be123c;}
+.m-pill.rejected .m-pill-dot,.m-pill.overdue .m-pill-dot,.m-pill.fail .m-pill-dot,.m-pill.disabled .m-pill-dot,.m-pill.inactive .m-pill-dot{background:#ef4444;}
+
+.m-search{position:relative;margin-bottom:12px;}
+.m-search .ti{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--tm);}
+.m-search input{width:100%;height:44px;border:1px solid var(--border);border-radius:var(--rmd);padding:0 40px 0 38px;font-size:14px;color:var(--tp);background:var(--white);outline:none;font-family:'Inter',sans-serif;}
+.m-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,97,227,.1);}
+.m-search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:none;background:var(--surf);border-radius:50%;color:var(--tm);display:none;align-items:center;justify-content:center;font-size:13px;}
+.m-search-clear.show{display:flex;}
+
+.m-chip-row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -16px 14px;padding:0 16px 2px;scrollbar-width:none;}
+.m-chip-row::-webkit-scrollbar{display:none;}
+.m-chip{flex:0 0 auto;height:36px;padding:0 15px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--ts);font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:5px;cursor:pointer;font-family:'Inter',sans-serif;}
+.m-chip.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.m-chip .m-chip-count{background:rgba(0,0,0,.06);border-radius:20px;padding:0 6px;font-size:10.5px;}
+.m-chip.active .m-chip-count{background:rgba(255,255,255,.25);}
+
+.m-tool-row{display:flex;gap:8px;margin-bottom:14px;}
+.m-tool-btn{flex:1;height:40px;border-radius:var(--rsm);border:1px solid var(--border);background:var(--white);color:var(--tp);font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:'Inter',sans-serif;min-height:44px;}
+.m-tool-btn:active{background:var(--surf);}
+
+.m-detail-hero{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.m-detail-avatar{width:52px;height:52px;border-radius:14px;background:var(--blue-light);color:var(--blue);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.m-detail-name{font-size:17px;font-weight:700;color:var(--tp);letter-spacing:-.2px;}
+.m-detail-id{font-size:12px;color:var(--tm);font-family:monospace;margin-top:2px;}
+.m-info-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:4px 14px;margin-bottom:14px;box-shadow:var(--sh);}
+.m-info-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f0f4fa;}
+.m-info-row:last-child{border-bottom:none;}
+.m-info-label{font-size:12.5px;color:var(--ts);}
+.m-info-val{font-size:13px;font-weight:500;color:var(--tp);text-align:right;}
+.m-info-val a{color:var(--blue);text-decoration:none;}
+
+.m-progress-list{display:flex;flex-direction:column;}
+.m-progress-item{display:flex;align-items:flex-start;gap:12px;padding-bottom:18px;position:relative;}
+.m-progress-item:last-child{padding-bottom:0;}
+.m-progress-item::before{content:'';position:absolute;left:11px;top:26px;bottom:0;width:1.5px;background:var(--border);}
+.m-progress-item:last-child::before{display:none;}
+.m-progress-dot{width:23px;height:23px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;background:var(--white);border:1.5px solid var(--border);color:var(--tm);z-index:1;}
+.m-progress-item.done .m-progress-dot{background:#22c55e;border-color:#22c55e;color:#fff;}
+.m-progress-item.active .m-progress-dot{background:var(--blue);border-color:var(--blue);color:#fff;}
+.m-progress-label{font-size:13.5px;font-weight:600;color:var(--tp);padding-top:2px;}
+.m-progress-item.pending .m-progress-label{color:var(--tm);font-weight:500;}
+
+.m-action-row{display:flex;gap:10px;margin-top:6px;margin-bottom:18px;}
+.m-btn{height:46px;border-radius:var(--rsm);font-size:13.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:'Inter',sans-serif;border:1px solid var(--border);background:var(--white);color:var(--tp);flex:1;min-height:44px;}
+.m-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+.m-btn:active{opacity:.85;}
+.m-btn:disabled{opacity:.5;pointer-events:none;}
+
+.m-form-group{margin-bottom:16px;}
+.m-form-label{font-size:12.5px;font-weight:600;color:var(--tp);margin-bottom:6px;display:block;}
+.m-form-hint{font-size:11.5px;color:var(--tm);margin-top:5px;}
+.m-form-error{font-size:11.5px;color:#be123c;margin-top:5px;display:none;align-items:center;gap:4px;}
+.m-form-group.error .m-form-error{display:flex;}
+.m-form-group.error .m-input{border-color:#fca5a5;background:#fff1f2;}
+.m-input{width:100%;height:48px;border:1.5px solid var(--border);border-radius:var(--rsm);padding:0 14px;font-size:15px;color:var(--tp);background:var(--white);outline:none;font-family:'Inter',sans-serif;}
+.m-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,97,227,.1);}
+select.m-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
+
+.m-sticky-cta{position:sticky;bottom:0;left:0;right:0;margin:16px -16px calc(-24px - env(safe-area-inset-bottom));padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:var(--white);border-top:1px solid var(--border);display:flex;gap:10px;}
+
+.m-steps{display:flex;align-items:center;gap:6px;margin-bottom:20px;}
+.m-step-bar{flex:1;height:4px;border-radius:4px;background:var(--border);}
+.m-step-bar.done,.m-step-bar.active{background:var(--blue);}
+.m-step-label{font-size:11.5px;color:var(--ts);font-weight:600;margin-bottom:18px;}
+.m-step-label strong{color:var(--tp);}
+
+.m-success{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 16px;}
+.m-success-icon{width:64px;height:64px;border-radius:50%;background:#f0fdf4;border:2px solid #86efac;color:#16a34a;font-size:28px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.m-success-title{font-size:18px;font-weight:700;color:var(--tp);margin-bottom:7px;}
+.m-success-sub{font-size:13.5px;color:var(--ts);line-height:1.6;max-width:280px;}
+
+.m-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.m-summary-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:14px;box-shadow:var(--sh);}
+.m-summary-card.wide{grid-column:1 / -1;background:var(--blue);border-color:var(--blue);}
+.m-summary-card.wide .m-summary-label{color:rgba(255,255,255,.75);}
+.m-summary-card.wide .m-summary-val{color:#fff;}
+.m-summary-label{font-size:11.5px;color:var(--ts);}
+.m-summary-val{font-size:19px;font-weight:700;color:var(--tp);letter-spacing:-.3px;margin-top:4px;}
+
+.m-rate-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden;margin-bottom:10px;box-shadow:var(--sh);}
+.m-rate-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;min-height:44px;}
+.m-rate-name{font-size:13.5px;font-weight:600;color:var(--tp);}
+.m-rate-value{font-size:12.5px;color:var(--blue);font-weight:600;}
+.m-rate-body{display:none;padding:0 14px 13px;border-top:1px solid #f0f4fa;}
+.m-rate-card.open .m-rate-body{display:block;}
+.m-rate-card.open .m-rate-chev{transform:rotate(180deg);}
+.m-rate-chev{transition:transform .15s;color:var(--tm);}
+.m-rate-row{display:flex;justify-content:space-between;padding:8px 0;font-size:12.5px;border-bottom:1px solid #f5f7fa;}
+.m-rate-row:last-child{border-bottom:none;}
+.m-rate-row .l{color:var(--ts);}
+.m-rate-row .v{color:var(--tp);font-weight:500;}
+
+.m-menu-group{margin-bottom:20px;}
+.m-menu-label{font-size:11px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;padding:0 2px;}
+.m-menu-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);overflow:hidden;box-shadow:var(--sh);}
+.m-menu-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid #f0f4fa;cursor:pointer;min-height:44px;}
+.m-menu-item:last-child{border-bottom:none;}
+.m-menu-item:active{background:var(--surf);}
+.m-menu-icon{width:32px;height:32px;border-radius:8px;background:var(--surf);color:var(--ts);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.m-menu-text{flex:1;font-size:13.5px;font-weight:500;color:var(--tp);}
+.m-menu-badge{font-size:11px;font-weight:600;color:var(--tm);background:var(--surf);border-radius:20px;padding:2px 8px;}
+
+.m-profile-card{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);padding:14px;margin-bottom:20px;box-shadow:var(--sh);}
+.m-profile-avatar{width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.m-profile-name{font-size:14.5px;font-weight:700;color:var(--tp);}
+.m-profile-id{font-size:11.5px;color:var(--tm);font-family:monospace;margin-top:2px;}
+
+.m-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 20px;}
+.m-empty-icon{width:52px;height:52px;border-radius:50%;background:var(--surf);color:var(--tm);font-size:24px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.m-empty-title{font-size:14.5px;font-weight:600;color:var(--tp);margin-bottom:5px;}
+.m-empty-sub{font-size:12.5px;color:var(--ts);line-height:1.6;max-width:260px;margin-bottom:16px;}
+
+.m-skel{background:linear-gradient(90deg,#eef2f7 25%,#f7f9fc 37%,#eef2f7 63%);background-size:400% 100%;animation:mSkelShimmer 1.4s ease infinite;border-radius:8px;}
+@keyframes mSkelShimmer{0%{background-position:100% 50%;}100%{background-position:0 50%;}}
+@media (prefers-reduced-motion:reduce){.m-skel{animation:none;background:#eef2f7;}}
+.m-skel-row{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);margin-bottom:10px;}
+.m-skel-avatar{width:40px;height:40px;border-radius:10px;flex-shrink:0;}
+.m-skel-lines{flex:1;}
+.m-skel-line{height:11px;margin-bottom:7px;}
+.m-skel-line:last-child{margin-bottom:0;width:60%;}
+
+.m-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:200;align-items:flex-end;}
+.m-sheet-overlay.open{display:flex;}
+.m-sheet{width:100%;max-height:82vh;background:var(--white);border-radius:20px 20px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));overflow-y:auto;transform:translateY(100%);transition:transform .28s cubic-bezier(.16,1,.3,1);}
+.m-sheet-overlay.open .m-sheet{transform:translateY(0);}
+.m-sheet-handle{width:36px;height:4px;border-radius:4px;background:var(--border);margin:0 auto 14px;}
+.m-sheet-title{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:14px;}
+.m-sheet-opt{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid #f0f4fa;cursor:pointer;min-height:44px;}
+.m-sheet-opt:last-of-type{border-bottom:none;}
+.m-sheet-opt.selected{color:var(--blue);font-weight:600;}
+.m-sheet-radio{width:19px;height:19px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.m-sheet-opt.selected .m-sheet-radio{border-color:var(--blue);}
+.m-sheet-radio::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--blue);display:none;}
+.m-sheet-opt.selected .m-sheet-radio::after{display:block;}
+.m-sheet-actions{display:flex;gap:10px;margin-top:16px;}
+
+.m-install-toast{display:none;position:fixed;left:14px;right:14px;bottom:calc(70px + env(safe-area-inset-bottom));background:var(--white);border:1px solid var(--border);border-radius:var(--rmd);box-shadow:var(--shm);padding:14px;align-items:flex-start;gap:11px;z-index:150;}
+.m-install-toast.show{display:flex;}
+.m-install-icon img{width:40px;height:40px;border-radius:9px;display:block;}
+.m-install-text{flex:1;display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--ts);}
+.m-install-text strong{font-size:13px;color:var(--tp);}
+.m-install-actions{display:flex;flex-direction:column;gap:6px;}
+.m-install-yes{height:30px;padding:0 14px;background:var(--blue);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;}
+.m-install-no{height:26px;padding:0 6px;background:none;color:var(--tm);border:none;font-size:11.5px;font-family:'Inter',sans-serif;}
+
+.mobile-app button:focus-visible,.mobile-app input:focus-visible,.mobile-app select:focus-visible,.mobile-app [tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+
+@media (max-width:360px){
+  .m-quick-actions{grid-template-columns:1fr;}
+  .m-metric{min-width:98px;}
 }
 
 </style>
@@ -3346,6 +3630,66 @@ img{max-width:100%;}
 
 </div><!-- /main -->
 </div><!-- /layout -->
+
+<!-- ════════════════════════════════════════════════
+     MOBILE APP SHELL — purpose-built phone/tablet experience.
+     Shown at ≤900px in place of the desktop sidebar layout (see
+     "MOBILE APP" CSS section). Reads the same underlying data
+     (MOA_DATA, MERCHANTS, TXN_DATA, INVOICES, TM_MEMBERS, KM_KEYS,
+     WH_ENDPOINTS) as the desktop views — presentation only, no
+     separate mobile data model.
+════════════════════════════════════════════════ -->
+<div class="mobile-app" id="mobileApp">
+
+  <header class="m-header" id="mHeader">
+    <button class="m-back" id="mBackBtn" onclick="mGoBack()" aria-label="Back" style="display:none;"><i class="ti ti-chevron-left"></i></button>
+    <div class="m-header-brand" id="mHeaderBrand"><div class="m-logo">PG</div><span>Partner Program</span></div>
+    <div class="m-header-title" id="mHeaderTitle" style="display:none;"></div>
+    <button class="m-header-action" id="mHeaderAction" onclick="mOpenNotifications()" aria-label="Notifications"><i class="ti ti-bell"></i><span class="m-notif-dot" id="mNotifDot"></span></button>
+  </header>
+
+  <div class="m-offline-banner" id="mOfflineBanner"><i class="ti ti-wifi-off"></i> You're offline — some information may be unavailable</div>
+
+  <main class="m-content" id="mContent">
+    <div class="m-screen" id="m-home"></div>
+    <div class="m-screen" id="m-merchants"></div>
+    <div class="m-screen" id="m-merchant-detail"></div>
+    <div class="m-screen" id="m-invite"></div>
+    <div class="m-screen" id="m-onboard"></div>
+    <div class="m-screen" id="m-earnings"></div>
+    <div class="m-screen" id="m-transactions"></div>
+    <div class="m-screen" id="m-more"></div>
+    <div class="m-screen" id="m-team"></div>
+    <div class="m-screen" id="m-keys"></div>
+    <div class="m-screen" id="m-webhooks"></div>
+    <div class="m-screen" id="m-gst"></div>
+    <div class="m-screen" id="m-pricing"></div>
+    <div class="m-screen" id="m-help"></div>
+    <div class="m-screen" id="m-settings"></div>
+  </main>
+
+  <nav class="m-bottomnav" id="mBottomNav" aria-label="Primary">
+    <button class="m-nav-item active" data-tab="home" onclick="mGoScreen('home')"><i class="ti ti-home"></i><span>Home</span></button>
+    <button class="m-nav-item" data-tab="merchants" onclick="mGoScreen('merchants')"><i class="ti ti-users"></i><span>Merchants</span></button>
+    <button class="m-nav-item" data-tab="earnings" onclick="mGoScreen('earnings')"><i class="ti ti-wallet"></i><span>Earnings</span></button>
+    <button class="m-nav-item" data-tab="more" onclick="mGoScreen('more')"><i class="ti ti-menu-2"></i><span>More</span></button>
+  </nav>
+
+  <div class="m-sheet-overlay" id="mSheetOverlay" onclick="if(event.target===this) closeMSheet()">
+    <div class="m-sheet" id="mSheet" role="dialog" aria-modal="true">
+      <div class="m-sheet-handle"></div>
+      <div class="m-sheet-body" id="mSheetBody"></div>
+    </div>
+  </div>
+
+  <div class="m-install-toast" id="mInstallToast">
+    <div class="m-install-icon"><img src="assets/icons/icon-192.png" alt="" width="40" height="40"></div>
+    <div class="m-install-text"><strong>Get quicker access</strong><span>Install the PayGlocal Partner app for a faster experience.</span></div>
+    <div class="m-install-actions"><button class="m-install-yes" onclick="mInstallApp()">Install</button><button class="m-install-no" onclick="mDismissInstall()">Not now</button></div>
+  </div>
+
+</div>
+<!-- /MOBILE APP SHELL -->
 
 <!-- ── ADD MERCHANT DRAWER ── -->
 <div class="overlay" id="addOverlay" onclick="hoc(event,'addOverlay')">
@@ -6089,6 +6433,745 @@ function toggleAcctMgmt() {
     item.addEventListener('click', function() { tip.style.display = 'none'; });
   });
 })();
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE APP — purpose-built phone/tablet experience.
+   Reads the SAME data arrays as desktop (MOA_DATA, MERCHANTS,
+   TXN_DATA, INVOICES, TM_MEMBERS, KM_KEYS, WH_ENDPOINTS) — this is
+   a presentation layer only, no separate mobile data model.
+═══════════════════════════════════════════════════════════════ */
+
+/* ── tiny helpers ── */
+function mEsc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function mInitials(name){ return String(name||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
+function mText(sel){ const el = document.querySelector(sel); return el ? el.textContent.trim() : ''; }
+
+/* Merchant Activation status → shared vocabulary (matches statusBadgeMoa on desktop) */
+const M_STATUS_META = {
+  accepted:   {label:'Accepted',        icon:'ti-check'},
+  underreview:{label:'Under review',    icon:'ti-hourglass'},
+  inprogress: {label:'In-Progress',     icon:'ti-progress'},
+  pendency:   {label:'Under Pendency',  icon:'ti-alert-circle'},
+  rejected:   {label:'Rejected',        icon:'ti-x'},
+  vkyc:       {label:'V-KYC Pending',   icon:'ti-video'},
+};
+function mStatusPill(status){
+  const meta = M_STATUS_META[status] || {label:status, icon:'ti-circle'};
+  return `<span class="m-pill ${status}"><span class="m-pill-dot"></span>${meta.label}</span>`;
+}
+
+/* ── empty / skeleton / error state builders ── */
+function mEmptyState(icon, title, sub, actionHtml){
+  return `<div class="m-empty"><div class="m-empty-icon"><i class="ti ${icon}"></i></div>
+    <div class="m-empty-title">${title}</div><div class="m-empty-sub">${sub}</div>${actionHtml||''}</div>`;
+}
+function mSkeletonRows(n){
+  return Array.from({length:n||4}).map(()=>`
+    <div class="m-skel-row"><div class="m-skel m-skel-avatar"></div>
+      <div class="m-skel-lines"><div class="m-skel m-skel-line" style="width:70%"></div><div class="m-skel m-skel-line"></div></div>
+    </div>`).join('');
+}
+/* Runs a render function after a brief skeleton — simulates async load without
+   claiming a real backend round-trip exists. */
+function mWithSkeleton(targetEl, skeletonHtml, renderFn){
+  targetEl.innerHTML = skeletonHtml;
+  setTimeout(renderFn, 260);
+}
+
+/* ── bottom sheet ── */
+function openMSheet(html){
+  document.getElementById('mSheetBody').innerHTML = html;
+  document.getElementById('mSheetOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMSheet(){
+  document.getElementById('mSheetOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ══ ROUTER ══ */
+const M_TITLES = {
+  merchants:'Merchants', 'merchant-detail':'Merchant', invite:'Invite Merchant', onboard:'Onboard Merchant',
+  earnings:'Earnings', transactions:'Transactions', more:'More', team:'Team Management', keys:'Key Management',
+  webhooks:'Webhooks', gst:'GST Invoices', pricing:'Merchant Pricing', help:'Help & Support', settings:'Settings',
+};
+const M_TAB_OF = {
+  home:'home', merchants:'merchants', 'merchant-detail':'merchants', invite:'merchants', onboard:'merchants',
+  earnings:'earnings', transactions:'more', more:'more', team:'more', keys:'more', webhooks:'more',
+  gst:'more', pricing:'more', help:'more', settings:'more',
+};
+let mStack = ['home'];
+let mCurrentArg = null;
+
+function mGoScreen(name, arg, replace){
+  document.querySelectorAll('.m-screen').forEach(s=>s.classList.remove('active'));
+  const target = document.getElementById('m-'+name);
+  if (!target) return;
+  target.classList.add('active');
+  mCurrentArg = arg;
+
+  if (replace) mStack[mStack.length-1] = name; else if (mStack[mStack.length-1] !== name) mStack.push(name);
+
+  const back = document.getElementById('mBackBtn');
+  const brand = document.getElementById('mHeaderBrand');
+  const title = document.getElementById('mHeaderTitle');
+  if (name === 'home') {
+    back.style.display = 'none'; brand.style.display = 'flex'; title.style.display = 'none';
+  } else {
+    back.style.display = mStack.length > 1 ? 'flex' : 'none';
+    brand.style.display = 'none'; title.style.display = 'block';
+    title.textContent = M_TITLES[name] || '';
+  }
+
+  document.querySelectorAll('.m-nav-item').forEach(b=>b.classList.toggle('active', b.dataset.tab === M_TAB_OF[name]));
+  document.getElementById('mContent').scrollTop = 0;
+
+  const renderers = {
+    home:renderMHome, merchants:()=>renderMMerchants(), 'merchant-detail':()=>renderMMerchantDetail(arg),
+    invite:renderMInvite, onboard:()=>renderMOnboard(0), earnings:renderMEarnings, transactions:renderMTransactions,
+    more:renderMMore, team:renderMTeam, keys:renderMKeys, webhooks:renderMWebhooks, gst:renderMGst,
+    pricing:renderMPricing, help:renderMHelp, settings:renderMSettings,
+  };
+  if (renderers[name]) renderers[name]();
+}
+function mGoBack(){
+  if (mStack.length <= 1) return;
+  mStack.pop();
+  const prev = mStack.pop() || 'home';
+  mGoScreen(prev);
+}
+/* tapping a bottom-nav tab resets that tab's own stack */
+function mGoTab(name){ mStack = ['home']; if (name !== 'home') mStack.push(name); mGoScreen(name, null, true); }
+
+/* ══ HOME ══ */
+function mGetMoaCardStats(){
+  const cards = document.querySelectorAll('.moa-card');
+  return Array.from(cards).map(c => ({
+    label: mEsc(c.querySelector('.moa-card-label')?.childNodes[0]?.textContent.trim() || ''),
+    val: mEsc(c.querySelector('.moa-card-val')?.textContent.trim() || ''),
+    trend: mEsc(c.querySelector('.moa-card-trend')?.textContent.trim() || ''),
+    up: !!c.querySelector('.trend-up'),
+  }));
+}
+function mCountByStatus(status){ return MOA_DATA.filter(m=>m.status===status).length; }
+function mGreeting(){
+  const h = new Date().getHours();
+  return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+}
+function renderMHome(){
+  const el = document.getElementById('m-home');
+  const stats = mGetMoaCardStats(); // [Total, Active, Pending, Conversion] — same source as desktop
+  const partnerFirst = (mText('.tb-right strong') || 'Partner').split(' ')[0];
+  const perf = stats[3] || {val:'—', trend:''};
+  const attention = ['pendency','vkyc','underreview','inprogress'].reduce((n,s)=>n+mCountByStatus(s), 0);
+
+  const insightRows = [
+    {status:'pendency', label:'Under pendency'}, {status:'vkyc', label:'V-KYC pending'},
+    {status:'underreview', label:'Under review'}, {status:'inprogress', label:'In progress'},
+  ].map(r => `<div class="m-insight-row" onclick="mMerchantTab='${r.status}';mGoTab('merchants')">
+      <span class="m-insight-row-label">${mStatusPill(r.status)}</span>
+      <span class="m-insight-count">${mCountByStatus(r.status)}</span>
+    </div>`).join('');
+
+  const recent = MOA_DATA.slice(0, 4).map(m => mMerchantRowHtml(m)).join('');
+
+  el.innerHTML = `
+    <div class="m-greeting"><h1>${mGreeting()}, ${mEsc(partnerFirst)}</h1><p>Here's what's happening with your merchants today</p></div>
+
+    <div class="m-perf-card">
+      <div class="m-perf-label">Partner Performance <i class="ti ti-chart-line" style="font-size:15px;"></i></div>
+      <div class="m-perf-val">${perf.val}</div>
+      <div class="m-perf-sub">Conversion Rate</div>
+      ${perf.trend ? `<div class="m-perf-trend"><i class="ti ti-trending-${perf.up?'up':'down'}"></i> ${perf.trend}</div>` : ''}
+    </div>
+
+    <div class="m-metric-row">
+      ${stats.slice(0,3).map(s=>`<div class="m-metric"><div class="m-metric-val">${s.val}</div><div class="m-metric-label">${s.label}</div></div>`).join('')}
+    </div>
+
+    <div class="m-quick-actions">
+      <button class="m-qa-btn primary" onclick="mGoTab('merchants');mGoScreen('invite')"><div class="m-qa-icon"><i class="ti ti-user-plus"></i></div><div class="m-qa-btn-label">Invite Merchant</div></button>
+      <button class="m-qa-btn" onclick="mGoTab('merchants');mGoScreen('onboard')"><div class="m-qa-icon"><i class="ti ti-building-store"></i></div><div class="m-qa-btn-label">Onboard Merchant</div></button>
+    </div>
+
+    <div class="m-insight-card">
+      <div class="m-insight-head"><div class="m-insight-icon"><i class="ti ti-alert-circle"></i></div>
+        <div><div class="m-insight-title">${attention} merchant${attention===1?'':'s'} need${attention===1?'s':''} attention</div><div class="m-insight-sub">Tap a status to see who's affected</div></div></div>
+      <div class="m-insight-rows">${insightRows}</div>
+    </div>
+
+    <div class="m-sec-head"><div class="m-sec-title">Recent merchants</div><button class="m-sec-link" onclick="mGoTab('merchants')">View all <i class="ti ti-chevron-right" style="font-size:12px;"></i></button></div>
+    <div class="m-list">${recent || mEmptyState('ti-users','No merchants yet','Invite your first merchant to start building your partner portfolio.')}</div>
+  `;
+}
+
+/* ══ MERCHANTS LIST ══ */
+const M_MERCHANT_TABS = [
+  {key:'all', label:'All'}, {key:'pendency', label:'Under pendency'}, {key:'vkyc', label:'V-KYC'},
+  {key:'underreview', label:'Under review'}, {key:'inprogress', label:'In progress'},
+  {key:'rejected', label:'Rejected'}, {key:'accepted', label:'Accepted'},
+];
+let mMerchantTab = 'all';
+let mMerchantSearch = '';
+let mMerchantSort = 'recent';
+
+function mFilterMerchants(){
+  let data = MOA_DATA.slice();
+  if (mMerchantTab !== 'all') data = data.filter(m => m.status === mMerchantTab);
+  if (mMerchantSearch) {
+    const q = mMerchantSearch.toLowerCase();
+    data = data.filter(m => m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q) || m.phone.includes(q) || m.id.toLowerCase().includes(q));
+  }
+  if (mMerchantSort === 'name') data.sort((a,b)=>a.name.localeCompare(b.name));
+  else if (mMerchantSort === 'status') data.sort((a,b)=>a.status.localeCompare(b.status));
+  return data;
+}
+function mMerchantRowHtml(m){
+  return `<div class="m-row" onclick="mGoScreen('merchant-detail','${m.id}')">
+    <div class="m-row-avatar">${mInitials(m.name)}</div>
+    <div class="m-row-body"><div class="m-row-title">${mEsc(m.name)}</div><div class="m-row-sub">${mEsc(m.id)}</div></div>
+    <div class="m-row-meta">${mStatusPill(m.status)}<span class="m-row-date">${mEsc(m.date)}</span></div>
+  </div>`;
+}
+function mSelectMerchantChip(key){
+  mMerchantTab = key;
+  renderMMerchants();
+}
+function renderMMerchants(){
+  const el = document.getElementById('m-merchants');
+  const chips = M_MERCHANT_TABS.map(t => {
+    const count = t.key==='all' ? MOA_DATA.length : mCountByStatus(t.key);
+    return `<button class="m-chip ${mMerchantTab===t.key?'active':''}" onclick="mSelectMerchantChip('${t.key}')">${t.label} <span class="m-chip-count">${count}</span></button>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="m-search"><i class="ti ti-search"></i>
+      <input id="mMerchantSearchInput" type="text" inputmode="search" placeholder="Name, email, phone, or onboarding ID" value="${mEsc(mMerchantSearch)}" oninput="mMerchantSearch=this.value;mRenderMerchantList();document.getElementById('mMerchantClear').classList.toggle('show',!!this.value)">
+      <button class="m-search-clear ${mMerchantSearch?'show':''}" id="mMerchantClear" onclick="mMerchantSearch='';mRenderMerchantList();this.classList.remove('show');document.getElementById('mMerchantSearchInput').value=''"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="m-chip-row">${chips}</div>
+    <div class="m-tool-row">
+      <button class="m-tool-btn" onclick="mOpenMerchantFilterSheet()"><i class="ti ti-filter" style="font-size:14px;"></i> Filter</button>
+      <button class="m-tool-btn" onclick="mOpenMerchantSortSheet()"><i class="ti ti-arrows-sort" style="font-size:14px;"></i> Sort</button>
+      <button class="m-tool-btn" onclick="mGoScreen('invite')" style="flex:0 0 44px;"><i class="ti ti-plus" style="font-size:16px;"></i></button>
+    </div>
+    <div class="m-list" id="mMerchantListBody">${mSkeletonRows(5)}</div>
+  `;
+  const body = document.getElementById('mMerchantListBody');
+  mWithSkeleton(body, mSkeletonRows(5), mRenderMerchantList);
+}
+function mRenderMerchantList(){
+  const body = document.getElementById('mMerchantListBody');
+  if (!body) return;
+  const data = mFilterMerchants();
+  body.innerHTML = data.length ? data.map(mMerchantRowHtml).join('')
+    : mEmptyState('ti-search-off','No merchants found', mMerchantSearch ? `No results for "${mEsc(mMerchantSearch)}". Try a different search.` : 'No merchants match this filter yet.');
+}
+function mOpenMerchantFilterSheet(){
+  const opts = M_MERCHANT_TABS.map(t => `<div class="m-sheet-opt ${mMerchantTab===t.key?'selected':''}" onclick="mMerchantTab='${t.key}';closeMSheet();renderMMerchants();">
+      <span>${t.label}</span><span class="m-sheet-radio"></span></div>`).join('');
+  openMSheet(`<div class="m-sheet-title">Filter merchants</div><div>${opts}</div>`);
+}
+function mOpenMerchantSortSheet(){
+  const opts = [{k:'recent',l:'Most recent'},{k:'name',l:'Name (A–Z)'},{k:'status',l:'Status'}]
+    .map(o=>`<div class="m-sheet-opt ${mMerchantSort===o.k?'selected':''}" onclick="mMerchantSort='${o.k}';closeMSheet();mRenderMerchantList();">
+      <span>${o.l}</span><span class="m-sheet-radio"></span></div>`).join('');
+  openMSheet(`<div class="m-sheet-title">Sort by</div><div>${opts}</div>`);
+}
+
+/* ══ MERCHANT DETAIL ══ */
+const M_ONBOARD_STEPS = ['Application','Business details','Documents','Compliance review','Activation'];
+function mOnboardStepState(status){
+  const map = {
+    accepted:    [1,1,1,1,1], underreview: [1,1,1,'active',0], vkyc: [1,1,1,'active',0],
+    pendency:    [1,1,1,'active',0], inprogress:  [1,1,'active',0,0], rejected: [1,1,1,1,0],
+  };
+  return map[status] || [0,0,0,0,0];
+}
+function renderMMerchantDetail(id){
+  const el = document.getElementById('m-merchant-detail');
+  const m = MOA_DATA.find(x => x.id === id);
+  if (!m) { el.innerHTML = mEmptyState('ti-mood-confuzed','Merchant not found','This merchant record is no longer available.'); return; }
+
+  const steps = mOnboardStepState(m.status);
+  const stepsHtml = M_ONBOARD_STEPS.map((label,i) => {
+    const s = steps[i];
+    const cls = s===1 ? 'done' : s==='active' ? 'active' : 'pending';
+    const icon = s===1 ? '<i class="ti ti-check"></i>' : s==='active' ? '<i class="ti ti-point-filled"></i>' : (i+1);
+    return `<div class="m-progress-item ${cls}"><div class="m-progress-dot">${icon}</div><div class="m-progress-label">${label}</div></div>`;
+  }).join('');
+
+  const canViewMerchant = ['accepted','underreview','vkyc'].includes(m.status) && m.mercId;
+
+  el.innerHTML = `
+    <div class="m-detail-hero"><div class="m-detail-avatar">${mInitials(m.name)}</div>
+      <div><div class="m-detail-name">${mEsc(m.name)}</div><div class="m-detail-id">${mEsc(m.id)}</div></div></div>
+    <div style="margin-bottom:16px;">${mStatusPill(m.status)}</div>
+
+    <div class="m-info-card">
+      <div class="m-info-row"><span class="m-info-label">Legal name</span><span class="m-info-val">${mEsc(m.legal||'—')}</span></div>
+      <div class="m-info-row"><span class="m-info-label">Email</span><span class="m-info-val"><a href="mailto:${mEsc(m.email)}">${mEsc(m.email)}</a></span></div>
+      <div class="m-info-row"><span class="m-info-label">Phone</span><span class="m-info-val"><a href="tel:${mEsc(m.phone)}">${mEsc(m.phone)}</a></span></div>
+      <div class="m-info-row"><span class="m-info-label">Registered</span><span class="m-info-val">${mEsc(m.date)} · ${mEsc(m.time||'')}</span></div>
+    </div>
+
+    <div class="m-action-row">
+      <button class="m-btn primary" onclick="mOpenContactSheet('${mEsc(m.email)}','${mEsc(m.phone)}')"><i class="ti ti-message-circle" style="font-size:15px;"></i> Contact merchant</button>
+      ${canViewMerchant ? `<button class="m-btn" onclick="showToast()"><i class="ti ti-external-link" style="font-size:15px;"></i> View merchant</button>` : ''}
+    </div>
+
+    <div class="m-sec-head"><div class="m-sec-title">Onboarding progress</div></div>
+    <div class="m-card" style="padding:16px 14px;"><div class="m-progress-list">${stepsHtml}</div></div>
+  `;
+}
+function mOpenContactSheet(email, phone){
+  openMSheet(`<div class="m-sheet-title">Contact merchant</div>
+    <a class="m-sheet-opt" href="tel:${phone}" style="text-decoration:none;color:inherit;"><span><i class="ti ti-phone" style="margin-right:9px;color:var(--blue);"></i>Call ${mEsc(phone)}</span></a>
+    <a class="m-sheet-opt" href="mailto:${email}" style="text-decoration:none;color:inherit;"><span><i class="ti ti-mail" style="margin-right:9px;color:var(--blue);"></i>Email ${mEsc(email)}</span></a>`);
+}
+
+/* ══ INVITE MERCHANT ══ */
+function renderMInvite(){
+  const el = document.getElementById('m-invite');
+  el.innerHTML = `
+    <div id="mInviteForm">
+      <p style="font-size:13px;color:var(--ts);margin-bottom:18px;">Send an onboarding invitation to a new merchant. They'll receive a link to get started.</p>
+      <div class="m-form-group" id="mInv-name-g"><label class="m-form-label">Merchant name</label><input class="m-input" id="mInv-name" type="text" placeholder="e.g. Green Leaf Organics"><div class="m-form-error"><i class="ti ti-alert-circle"></i> Enter the merchant's name</div></div>
+      <div class="m-form-group" id="mInv-email-g"><label class="m-form-label">Email</label><input class="m-input" id="mInv-email" type="email" inputmode="email" placeholder="merchant@example.com"><div class="m-form-error"><i class="ti ti-alert-circle"></i> Enter a valid email address</div></div>
+      <div class="m-form-group" id="mInv-phone-g"><label class="m-form-label">Phone</label><input class="m-input" id="mInv-phone" type="tel" inputmode="tel" placeholder="+91 98765 43210"><div class="m-form-error"><i class="ti ti-alert-circle"></i> Enter a phone number</div></div>
+    </div>
+    <div class="m-sticky-cta"><button class="m-btn primary" onclick="mSubmitInvite()">Send invitation</button></div>
+  `;
+}
+function mValidateField(id, groupId, valid){
+  document.getElementById(groupId).classList.toggle('error', !valid);
+  return valid;
+}
+function mSubmitInvite(){
+  const name = document.getElementById('mInv-name').value.trim();
+  const email = document.getElementById('mInv-email').value.trim();
+  const phone = document.getElementById('mInv-phone').value.trim();
+  const okName = mValidateField('mInv-name','mInv-name-g', !!name);
+  const okEmail = mValidateField('mInv-email','mInv-email-g', /\S+@\S+\.\S+/.test(email));
+  const okPhone = mValidateField('mInv-phone','mInv-phone-g', !!phone);
+  if (!okName || !okEmail || !okPhone) return;
+
+  const id = 'ONB-' + Math.floor(10000 + Math.random()*89999);
+  MOA_DATA.unshift({id, name, legal:name, email, phone, status:'inprogress', date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}), time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})});
+  if (typeof renderMoaTable === 'function') renderMoaTable();
+
+  document.getElementById('m-invite').innerHTML = `
+    <div class="m-success"><div class="m-success-icon"><i class="ti ti-check"></i></div>
+      <div class="m-success-title">Invitation sent</div>
+      <div class="m-success-sub">The merchant will receive an onboarding link shortly.</div>
+    </div>
+    <div class="m-sticky-cta"><button class="m-btn primary" onclick="mGoTab('merchants')">Done</button></div>`;
+}
+
+/* ══ ONBOARD MERCHANT (guided flow) ══ */
+const M_ONBOARD_LABELS = ['Merchant information','Business details','Contact details','Review'];
+let mOnboardData = {};
+function mOnboardFieldsFor(step){
+  if (step===0) return [
+    {id:'name', label:'Merchant name', type:'text', ph:'e.g. Sparkle Retail'},
+    {id:'category', label:'Business category', type:'select', options:['B2B SaaS','E-commerce','Travel & Tours','EdTech','NBFC / Lending','Healthcare','Gaming','Other']},
+  ];
+  if (step===1) return [
+    {id:'legal', label:'Legal entity name', type:'text', ph:'e.g. Sparkle Retail Pvt Ltd'},
+    {id:'gstin', label:'GSTIN (optional)', type:'text', ph:'27AABCG5678H1Z2', optional:true},
+  ];
+  if (step===2) return [
+    {id:'email', label:'Contact email', type:'email', ph:'contact@merchant.com'},
+    {id:'phone', label:'Contact phone', type:'tel', ph:'+91 98765 43210'},
+  ];
+  return [];
+}
+function renderMOnboard(step){
+  const el = document.getElementById('m-onboard');
+  if (step >= 4) { mOnboardConfirm(); return; }
+
+  if (step === 3) {
+    const rows = ['name','category','legal','gstin','email','phone'].filter(k=>mOnboardData[k]).map(k =>
+      `<div class="m-info-row"><span class="m-info-label">${k.charAt(0).toUpperCase()+k.slice(1)}</span><span class="m-info-val">${mEsc(mOnboardData[k])}</span></div>`).join('');
+    el.innerHTML = `
+      ${mStepsBarHtml(step)}
+      <div class="m-step-label">Step 4 of 4 — <strong>Review</strong></div>
+      <div class="m-info-card">${rows}</div>
+      <div class="m-sticky-cta"><button class="m-btn" onclick="renderMOnboard(${step-1})">Back</button><button class="m-btn primary" onclick="renderMOnboard(4)">Onboard Merchant</button></div>
+    `;
+    return;
+  }
+
+  const fields = mOnboardFieldsFor(step);
+  const fieldsHtml = fields.map(f => {
+    const val = mOnboardData[f.id] || '';
+    if (f.type === 'select') {
+      return `<div class="m-form-group" id="mOb-${f.id}-g"><label class="m-form-label">${f.label}</label>
+        <select class="m-input" id="mOb-${f.id}"><option value="">Select category</option>${f.options.map(o=>`<option ${val===o?'selected':''}>${o}</option>`).join('')}</select>
+        <div class="m-form-error"><i class="ti ti-alert-circle"></i> Select a category</div></div>`;
+    }
+    return `<div class="m-form-group" id="mOb-${f.id}-g"><label class="m-form-label">${f.label}</label>
+      <input class="m-input" id="mOb-${f.id}" type="${f.type}" inputmode="${f.type==='tel'?'tel':f.type==='email'?'email':'text'}" placeholder="${f.ph||''}" value="${mEsc(val)}">
+      <div class="m-form-error"><i class="ti ti-alert-circle"></i> This field is required</div></div>`;
+  }).join('');
+
+  el.innerHTML = `
+    ${mStepsBarHtml(step)}
+    <div class="m-step-label">Step ${step+1} of 4 — <strong>${M_ONBOARD_LABELS[step]}</strong></div>
+    ${fieldsHtml}
+    <div class="m-sticky-cta">
+      ${step>0 ? `<button class="m-btn" onclick="mOnboardSaveStep(${step},false);renderMOnboard(${step-1})">Back</button>` : ''}
+      <button class="m-btn primary" onclick="mOnboardNext(${step})">Continue</button>
+    </div>
+  `;
+}
+function mStepsBarHtml(step){
+  return `<div class="m-steps">${[0,1,2,3].map(i=>`<div class="m-step-bar ${i<step?'done':i===step?'active':''}"></div>`).join('')}</div>`;
+}
+function mOnboardSaveStep(step){
+  mOnboardFieldsFor(step).forEach(f => { const el = document.getElementById('mOb-'+f.id); if (el) mOnboardData[f.id] = el.value.trim(); });
+}
+function mOnboardNext(step){
+  const fields = mOnboardFieldsFor(step);
+  let ok = true;
+  fields.forEach(f => {
+    if (f.optional) return;
+    const el = document.getElementById('mOb-'+f.id);
+    const valid = el && el.value.trim();
+    if (!mValidateField('mOb-'+f.id, 'mOb-'+f.id+'-g', !!valid)) ok = false;
+  });
+  if (!ok) return;
+  mOnboardSaveStep(step);
+  renderMOnboard(step+1);
+}
+function mOnboardConfirm(){
+  const id = 'ONB-' + Math.floor(10000 + Math.random()*89999);
+  MOA_DATA.unshift({
+    id, name: mOnboardData.name||'New merchant', legal: mOnboardData.legal||mOnboardData.name||'',
+    email: mOnboardData.email||'', phone: mOnboardData.phone||'', status:'pendency',
+    date:new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),
+    time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}),
+  });
+  if (typeof renderMoaTable === 'function') renderMoaTable();
+  mOnboardData = {};
+  document.getElementById('m-onboard').innerHTML = `
+    <div class="m-success"><div class="m-success-icon"><i class="ti ti-check"></i></div>
+      <div class="m-success-title">Merchant onboarding started</div>
+      <div class="m-success-sub">We've created the onboarding record. You can track its progress from the Merchants tab.</div>
+    </div>
+    <div class="m-sticky-cta"><button class="m-btn primary" onclick="mGoTab('merchants')">Done</button></div>`;
+}
+
+/* ══ EARNINGS — commission-rate structure (no invented totals: the app has
+   no per-merchant earned-amount data, only rate cards, same as desktop) ══ */
+const PARTNER_COMMISSION_RATES = [
+  {product:'Global Accounts (FX)', type:'Revenue share', rate:'15% of FX spread', merchantRate:'0.55% FX spread', yourRate:'0.47% FX spread', spread:'0.08% (15% share)'},
+  {product:'International Cards', type:'Revenue share', rate:'0.30% of MDR', merchantRate:'2.50% MDR + ₹10', yourRate:'2.20% + ₹9.00', spread:'0.30% + ₹1.00'},
+  {product:'Domestic Cards', type:'Revenue share', rate:'0.20% of MDR', merchantRate:'1.50% MDR + ₹2', yourRate:'1.30% + ₹1.50', spread:'0.20% + ₹0.50'},
+  {product:'UPI', type:'Flat fee', rate:'—', merchantRate:'₹0', yourRate:'—', spread:'₹0.25 flat'},
+  {product:'Netbanking', type:'Revenue share', rate:'0.25% of MDR', merchantRate:'1.50% + ₹5', yourRate:'1.25% + ₹4.25', spread:'0.25% + ₹0.75'},
+  {product:'Onboarding bonus', type:'One-time', rate:'—', merchantRate:'', yourRate:'', spread:''},
+];
+function renderMEarnings(){
+  const el = document.getElementById('m-earnings');
+  const cards = PARTNER_COMMISSION_RATES.map((r,i) => `
+    <div class="m-rate-card" id="mRate-${i}">
+      <div class="m-rate-head" onclick="document.getElementById('mRate-${i}').classList.toggle('open')">
+        <div><div class="m-rate-name">${mEsc(r.product)}</div><div class="m-rate-value">${mEsc(r.rate)}</div></div>
+        <i class="ti ti-chevron-down m-rate-chev"></i>
+      </div>
+      ${r.merchantRate ? `<div class="m-rate-body">
+        <div class="m-rate-row"><span class="l">Commission type</span><span class="v">${mEsc(r.type)}</span></div>
+        <div class="m-rate-row"><span class="l">Merchant rate</span><span class="v">${mEsc(r.merchantRate)}</span></div>
+        <div class="m-rate-row"><span class="l">Your rate</span><span class="v">${mEsc(r.yourRate)}</span></div>
+        <div class="m-rate-row"><span class="l">Your spread</span><span class="v">${mEsc(r.spread)}</span></div>
+      </div>` : ''}
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="m-greeting"><h1>Earnings</h1><p>Your commission rates from PayGlocal — earned on every referred merchant's transactions</p></div>
+    <div class="m-summary-grid">
+      <div class="m-summary-card"><div class="m-summary-label">Products you earn on</div><div class="m-summary-val">${PARTNER_COMMISSION_RATES.length}</div></div>
+      <div class="m-summary-card"><div class="m-summary-label">Payout invoices</div><div class="m-summary-val">${INVOICES.length}</div></div>
+    </div>
+    <div class="m-sec-head"><div class="m-sec-title">Commission rates</div></div>
+    ${cards}
+    <div style="height:2px;"></div>
+    <button class="m-btn" style="width:100%;margin-top:6px;" onclick="mGoScreen('gst')"><i class="ti ti-file-invoice" style="font-size:15px;"></i> View GST invoices</button>
+  `;
+}
+
+/* ══ TRANSACTIONS ══ */
+let mTxnStatus = 'all';
+function renderMTransactions(){
+  const el = document.getElementById('m-transactions');
+  const statuses = ['all','declined','capture','auth','refund','settled'];
+  const labelMap = {all:'All', declined:'Declined', capture:'Capture', auth:'Auth', refund:'Refund', settled:'Settled'};
+  const chips = statuses.map(s => `<button class="m-chip ${mTxnStatus===s?'active':''}" onclick="mTxnStatus='${s}';renderMTransactions()">${labelMap[s]}</button>`).join('');
+  const data = mTxnStatus==='all' ? TXN_DATA : TXN_DATA.filter(t=>t.status===mTxnStatus);
+
+  const rows = data.map(t => `
+    <div class="m-row" onclick="showToast()">
+      <div class="m-row-avatar">${cardIcon(t.card).match(/>([A-Z]+)</)?.[1]||'••'}</div>
+      <div class="m-row-body"><div class="m-row-title">${mEsc(t.amount)} <span style="font-weight:400;color:var(--tm);font-size:11.5px;">${mEsc(t.cur)}</span></div><div class="m-row-sub">${mEsc(t.remitter)} · ${mEsc(t.txnId)}</div></div>
+      <div class="m-row-meta">${txnStatusBadge(t.status).replace(/class="/,'class="m-pill ')}<span class="m-row-date">${mEsc(t.date)}</span></div>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="m-chip-row">${chips}</div>
+    <div class="m-list">${rows || mEmptyState('ti-receipt-off','No transactions found','No transactions match this filter.')}</div>
+  `;
+}
+
+/* ══ MORE ══ */
+function renderMMore(){
+  const el = document.getElementById('m-more');
+  const name = mText('.tb-right strong') || 'Partner';
+  const pid = mText('.tb-pid') || '';
+  el.innerHTML = `
+    <div class="m-profile-card"><div class="m-profile-avatar">${mInitials(name)}</div>
+      <div><div class="m-profile-name">${mEsc(name)}</div><div class="m-profile-id">${mEsc(pid)}</div></div></div>
+
+    <div class="m-menu-group"><div class="m-menu-label">Insights</div><div class="m-menu-card">
+      <div class="m-menu-item" onclick="mGoScreen('transactions')"><div class="m-menu-icon"><i class="ti ti-chart-bar"></i></div><div class="m-menu-text">Transaction Overview</div><i class="ti ti-chevron-right" style="color:var(--tm);"></i></div>
+    </div></div>
+
+    <div class="m-menu-group"><div class="m-menu-label">Business</div><div class="m-menu-card">
+      <div class="m-menu-item" onclick="mGoScreen('pricing')"><div class="m-menu-icon"><i class="ti ti-tag"></i></div><div class="m-menu-text">Merchant Pricing</div><i class="ti ti-chevron-right" style="color:var(--tm);"></i></div>
+      <div class="m-menu-item" onclick="mGoScreen('gst')"><div class="m-menu-icon"><i class="ti ti-file-invoice"></i></div><div class="m-menu-text">GST Invoices</div><span class="m-menu-badge">${INVOICES.length}</span></div>
+    </div></div>
+
+    <div class="m-menu-group"><div class="m-menu-label">Account</div><div class="m-menu-card">
+      <div class="m-menu-item" onclick="mGoScreen('team')"><div class="m-menu-icon"><i class="ti ti-users-group"></i></div><div class="m-menu-text">Team Management</div><span class="m-menu-badge">${TM_MEMBERS.length}</span></div>
+      <div class="m-menu-item" onclick="mGoScreen('keys')"><div class="m-menu-icon"><i class="ti ti-key"></i></div><div class="m-menu-text">Key Management</div><i class="ti ti-chevron-right" style="color:var(--tm);"></i></div>
+      <div class="m-menu-item" onclick="mGoScreen('webhooks')"><div class="m-menu-icon"><i class="ti ti-webhook"></i></div><div class="m-menu-text">Webhooks</div><span class="m-menu-badge">${WH_ENDPOINTS.length}</span></div>
+    </div></div>
+
+    <div class="m-menu-group"><div class="m-menu-label">Support</div><div class="m-menu-card">
+      <div class="m-menu-item" onclick="mGoScreen('help')"><div class="m-menu-icon"><i class="ti ti-help-circle"></i></div><div class="m-menu-text">Help &amp; Support</div><i class="ti ti-chevron-right" style="color:var(--tm);"></i></div>
+    </div></div>
+
+    <div class="m-menu-group"><div class="m-menu-label">Preferences</div><div class="m-menu-card">
+      <div class="m-menu-item" onclick="mGoScreen('settings')"><div class="m-menu-icon"><i class="ti ti-settings"></i></div><div class="m-menu-text">Settings</div><i class="ti ti-chevron-right" style="color:var(--tm);"></i></div>
+    </div></div>
+  `;
+}
+
+/* ══ TEAM MANAGEMENT ══ */
+function renderMTeam(){
+  const el = document.getElementById('m-team');
+  const rows = TM_MEMBERS.map(m => `
+    <div class="m-row" onclick="showToast()">
+      <div class="m-row-avatar">${mEsc(m.initials)}</div>
+      <div class="m-row-body"><div class="m-row-title">${mEsc(m.fname)} ${mEsc(m.lname)}</div><div class="m-row-sub">${mEsc(m.email)}</div></div>
+      <div class="m-row-meta"><span class="m-pill ${m.status}"><span class="m-pill-dot"></span>${m.status.charAt(0).toUpperCase()+m.status.slice(1)}</span><span class="m-row-date">${mEsc(m.role)}</span></div>
+    </div>`).join('');
+  el.innerHTML = `
+    <button class="m-btn primary" style="width:100%;margin-bottom:16px;" onclick="mOpenInviteTeamSheet()"><i class="ti ti-user-plus" style="font-size:15px;"></i> Invite Teammate</button>
+    <div class="m-list">${rows || mEmptyState('ti-users','No team members yet','Invite teammates to help manage this partner account.')}</div>
+  `;
+}
+function mOpenInviteTeamSheet(){
+  openMSheet(`
+    <div class="m-sheet-title">Invite teammate</div>
+    <div class="m-form-group"><label class="m-form-label">First name</label><input class="m-input" id="mTm-fname" type="text"></div>
+    <div class="m-form-group"><label class="m-form-label">Last name</label><input class="m-input" id="mTm-lname" type="text"></div>
+    <div class="m-form-group"><label class="m-form-label">Email</label><input class="m-input" id="mTm-email" type="email" inputmode="email"></div>
+    <div class="m-form-group"><label class="m-form-label">Role</label><select class="m-input" id="mTm-role"><option>Admin</option><option>Ops</option><option>Custom</option></select></div>
+    <div class="m-sheet-actions"><button class="m-btn" onclick="closeMSheet()">Cancel</button><button class="m-btn primary" onclick="mSubmitInviteTeam()">Send invite</button></div>
+  `);
+}
+function mSubmitInviteTeam(){
+  const fname = document.getElementById('mTm-fname').value.trim();
+  const lname = document.getElementById('mTm-lname').value.trim();
+  const email = document.getElementById('mTm-email').value.trim();
+  const role = document.getElementById('mTm-role').value;
+  if (!fname || !email) return;
+  const initials = (fname[0]+(lname[0]||'')).toUpperCase();
+  TM_MEMBERS.push({id:Date.now(), fname, lname, email, initials, role, username:'', status:'invited', lta:false, joined:''});
+  if (typeof renderTmTable === 'function') renderTmTable();
+  closeMSheet();
+  showToast();
+  renderMTeam();
+}
+
+/* ══ KEY MANAGEMENT (read view) ══ */
+function renderMKeys(){
+  const el = document.getElementById('m-keys');
+  const rows = KM_KEYS.slice(0,25).map(k => `
+    <div class="m-row" onclick="showToast()">
+      <div class="m-row-avatar"><i class="ti ti-key"></i></div>
+      <div class="m-row-body"><div class="m-row-title" style="font-family:monospace;font-size:12.5px;">${mEsc(k.id)}</div><div class="m-row-sub">${mEsc(k.type)} · expires ${mEsc(k.expiry.split(' ')[0])}</div></div>
+      <div class="m-row-meta"><span class="m-pill ${k.status}"><span class="m-pill-dot"></span>${k.status.charAt(0).toUpperCase()+k.status.slice(1)}</span></div>
+    </div>`).join('');
+  el.innerHTML = `
+    <p style="font-size:12px;color:var(--ts);margin-bottom:14px;">Showing ${Math.min(25,KM_KEYS.length)} of ${KM_KEYS.length} keys. Key creation and rotation are available on desktop for now.</p>
+    <div class="m-list">${rows || mEmptyState('ti-key','No keys yet','Create your first API key from the desktop dashboard.')}</div>
+  `;
+}
+
+/* ══ WEBHOOKS (read view) ══ */
+function renderMWebhooks(){
+  const el = document.getElementById('m-webhooks');
+  const rows = WH_ENDPOINTS.map(w => `
+    <div class="m-row" onclick="mOpenWebhookSheet(${w.id})">
+      <div class="m-row-avatar"><i class="ti ti-webhook"></i></div>
+      <div class="m-row-body"><div class="m-row-title" style="font-size:12.5px;word-break:break-all;">${mEsc(w.url)}</div><div class="m-row-sub">${w.events.length} events</div></div>
+      <div class="m-row-meta"><span class="m-pill ${w.active?'active':'inactive'}"><span class="m-pill-dot"></span>${w.active?'Active':'Inactive'}</span></div>
+    </div>`).join('');
+  el.innerHTML = `
+    <div class="m-list">${rows || mEmptyState('ti-webhook','No webhook endpoints','Add an endpoint to start receiving event notifications.')}</div>
+  `;
+}
+function mOpenWebhookSheet(id){
+  const w = WH_ENDPOINTS.find(x=>x.id===id);
+  if (!w) return;
+  openMSheet(`<div class="m-sheet-title">Endpoint</div>
+    <div class="m-info-row"><span class="m-info-label">URL</span></div><div style="font-size:12.5px;word-break:break-all;margin-bottom:12px;">${mEsc(w.url)}</div>
+    <div class="m-info-label" style="margin-bottom:8px;">Subscribed events</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${w.events.map(e=>`<span class="m-chip" style="cursor:default;">${mEsc(e)}</span>`).join('')}</div>
+    <button class="m-btn" style="width:100%;" onclick="closeMSheet()">Close</button>`);
+}
+
+/* ══ GST INVOICES ══ */
+function renderMGst(){
+  const el = document.getElementById('m-gst');
+  const rows = INVOICES.map(inv => `
+    <div class="m-row" onclick="mOpenInvoiceSheet('${mEsc(inv.no)}')">
+      <div class="m-row-avatar"><i class="ti ti-file-invoice"></i></div>
+      <div class="m-row-body"><div class="m-row-title">${mEsc(inv.merchant)}</div><div class="m-row-sub">${mEsc(inv.no)} · ${mEsc(inv.month)}</div></div>
+      <div class="m-row-meta"><span class="m-pill ${inv.status}"><span class="m-pill-dot"></span>${inv.status.charAt(0).toUpperCase()+inv.status.slice(1)}</span><span class="m-row-date">₹${Number(inv.total).toLocaleString('en-IN')}</span></div>
+    </div>`).join('');
+  el.innerHTML = `<div class="m-list">${rows || mEmptyState('ti-file-invoice','No invoices yet','GST invoices will appear here once generated.')}</div>`;
+}
+function mOpenInvoiceSheet(no){
+  const inv = INVOICES.find(x=>x.no===no);
+  if (!inv) return;
+  openMSheet(`
+    <div class="m-sheet-title">${mEsc(inv.no)}</div>
+    <div class="m-info-row"><span class="m-info-label">Merchant</span><span class="m-info-val">${mEsc(inv.merchant)}</span></div>
+    <div class="m-info-row"><span class="m-info-label">Period</span><span class="m-info-val">${mEsc(inv.period)} — ${mEsc(inv.month)}</span></div>
+    <div class="m-info-row"><span class="m-info-label">Taxable value</span><span class="m-info-val">₹${Number(inv.taxable).toLocaleString('en-IN')}</span></div>
+    <div class="m-info-row"><span class="m-info-label">CGST + SGST</span><span class="m-info-val">₹${(Number(inv.cgst)+Number(inv.sgst)).toLocaleString('en-IN')}</span></div>
+    <div class="m-info-row"><span class="m-info-label">Total</span><span class="m-info-val" style="font-weight:700;">₹${Number(inv.total).toLocaleString('en-IN')}</span></div>
+    <div class="m-info-row"><span class="m-info-label">Status</span><span class="m-info-val">${mStatusPill(inv.status)}</span></div>
+    <div class="m-sheet-actions"><button class="m-btn primary" style="width:100%;" onclick="downloadInvoice('${mEsc(inv.no)}')"><i class="ti ti-download" style="font-size:14px;"></i> Download</button></div>
+  `);
+}
+
+/* ══ MERCHANT PRICING — reads the live desktop pricing form so mobile
+   never drifts from whatever the partner has configured on desktop ══ */
+function mReadPricingCard(bodyId, title){
+  const card = document.getElementById(bodyId);
+  if (!card) return {title, rows:[]};
+  const rows = Array.from(card.querySelectorAll('.pcfg-row, .pcfg-platform-row')).map(row => {
+    const label = row.querySelector('.pcfg-field-label')?.textContent.trim() || '';
+    const input = row.querySelector('.pcfg-input');
+    const prefix = row.querySelector('.pcfg-prefix')?.textContent || '';
+    const suffix = row.querySelector('.pcfg-suffix')?.textContent || '';
+    const val = input ? prefix + input.value + suffix : '';
+    return {label, val};
+  }).filter(r=>r.label);
+  return {title, rows};
+}
+function renderMPricing(){
+  const el = document.getElementById('m-pricing');
+  const sections = [
+    mReadPricingCard('mp-body-dom','Domestic Payment Processing'),
+    mReadPricingCard('mp-body-intl','International Payment Processing'),
+    mReadPricingCard('mp-body-ga','Global Accounts'),
+  ];
+  el.innerHTML = `
+    <p style="font-size:12.5px;color:var(--ts);margin-bottom:14px;">The fee structure currently applied to your merchants. Edit rates from the desktop dashboard.</p>
+    ${sections.map((s,i)=>`
+      <div class="m-rate-card" id="mPrice-${i}">
+        <div class="m-rate-head" onclick="document.getElementById('mPrice-${i}').classList.toggle('open')">
+          <div class="m-rate-name">${mEsc(s.title)}</div><i class="ti ti-chevron-down m-rate-chev"></i>
+        </div>
+        <div class="m-rate-body">${s.rows.map(r=>`<div class="m-rate-row"><span class="l">${mEsc(r.label)}</span><span class="v">${mEsc(r.val)}</span></div>`).join('') || '<div class="m-rate-row"><span class="l">No configured rates</span></div>'}</div>
+      </div>`).join('')}
+  `;
+}
+
+/* ══ HELP & SETTINGS ══ */
+function renderMHelp(){
+  document.getElementById('m-help').innerHTML = `
+    <div class="m-menu-card" style="margin-bottom:16px;">
+      <a class="m-menu-item" href="mailto:support@payglocal.in" style="text-decoration:none;color:inherit;"><div class="m-menu-icon"><i class="ti ti-mail"></i></div><div class="m-menu-text">Email support</div><div class="m-row-sub">support@payglocal.in</div></a>
+      <a class="m-menu-item" href="https://payglocal.in" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;"><div class="m-menu-icon"><i class="ti ti-world"></i></div><div class="m-menu-text">Visit payglocal.in</div><i class="ti ti-external-link" style="color:var(--tm);"></i></a>
+    </div>
+    <p style="font-size:12px;color:var(--tm);">For account-specific or regulatory queries, reach out to your PayGlocal partner success manager.</p>
+  `;
+}
+function renderMSettings(){
+  const name = mText('.tb-right strong') || 'Partner';
+  const pid = mText('.tb-pid') || '';
+  const sandbox = mText('.sandbox-badge') || 'Sandbox';
+  document.getElementById('m-settings').innerHTML = `
+    <div class="m-info-card">
+      <div class="m-info-row"><span class="m-info-label">Name</span><span class="m-info-val">${mEsc(name)}</span></div>
+      <div class="m-info-row"><span class="m-info-label">Partner ID</span><span class="m-info-val" style="font-family:monospace;">${mEsc(pid)}</span></div>
+      <div class="m-info-row"><span class="m-info-label">Environment</span><span class="m-info-val">${mEsc(sandbox)}</span></div>
+    </div>
+    <div class="m-menu-card">
+      <div class="m-menu-item" onclick="mInstallApp()"><div class="m-menu-icon"><i class="ti ti-download"></i></div><div class="m-menu-text">Install app</div></div>
+    </div>
+  `;
+}
+
+/* ══ NOTIFICATIONS (derived from real MOA_DATA — not a live push feed) ══ */
+function mOpenNotifications(){
+  const items = MOA_DATA.slice(0,6).map(m => {
+    const meta = M_STATUS_META[m.status] || {label:m.status, icon:'ti-circle'};
+    return `<div class="m-sheet-opt" style="cursor:pointer;" onclick="closeMSheet();mGoTab('merchants');mGoScreen('merchant-detail','${m.id}')">
+      <span style="display:flex;align-items:center;gap:9px;"><i class="ti ${meta.icon}" style="color:var(--blue);"></i>${mEsc(m.name)} — ${meta.label}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('mNotifDot').classList.remove('show');
+  openMSheet(`<div class="m-sheet-title">Notifications</div>${items || mEmptyState('ti-bell-off','No notifications','All caught up.')}`);
+}
+
+/* ══ OFFLINE BANNER ══ */
+function mUpdateOfflineBanner(){
+  document.getElementById('mOfflineBanner').classList.toggle('show', !navigator.onLine);
+}
+window.addEventListener('online', mUpdateOfflineBanner);
+window.addEventListener('offline', mUpdateOfflineBanner);
+
+/* ══ INSTALL PROMPT ══ */
+let mDeferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  mDeferredInstallPrompt = e;
+  if (window.innerWidth <= 900 && !sessionStorage.getItem('mInstallDismissed')) {
+    setTimeout(() => document.getElementById('mInstallToast').classList.add('show'), 2500);
+  }
+});
+function mInstallApp(){
+  document.getElementById('mInstallToast').classList.remove('show');
+  if (mDeferredInstallPrompt) { mDeferredInstallPrompt.prompt(); mDeferredInstallPrompt = null; }
+}
+function mDismissInstall(){
+  document.getElementById('mInstallToast').classList.remove('show');
+  sessionStorage.setItem('mInstallDismissed', '1');
+}
+
+/* ══ INIT ══ */
+function mInit(){
+  if (!document.getElementById('mobileApp')) return;
+  mUpdateOfflineBanner();
+  const hasAttention = MOA_DATA.some(m => ['pendency','vkyc'].includes(m.status));
+  document.getElementById('mNotifDot').classList.toggle('show', hasAttention);
+  mGoScreen('home', null, true);
+}
+document.addEventListener('DOMContentLoaded', mInit);
+if (document.readyState === 'complete' || document.readyState === 'interactive') mInit();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW registration failed:', err));
+  });
+}
 </script>
 </body>
 </html>
